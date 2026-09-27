@@ -70,5 +70,5 @@ As User Stories descrevem as funcionalidades do sistema do ponto de vista do usu
 
 ## Referências
 
-* [Diagramas de casos de uso RF01 a RF12](modelagem-uml/casos-de-uso.md)
+* [Diagramas de casos de uso RF01 a RF12](modelagem-uml/casos-de-usos.md)
 * [Fluxos principais e alternativos RF01 a RF12](modelagem-uml/especificacao.md)
