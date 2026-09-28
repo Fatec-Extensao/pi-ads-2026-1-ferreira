@@ -19,10 +19,10 @@
 
 | Nome do Aluno | GitHub / Perfil |
 | :--- | :--- |
-| Eduardo Matias | [@usuario1](https://github.com/edumatias1224) |
-| Lucas Tridapali | [@usuario2](https://github.com/LucasTridapali) |
-| Neandro Bueno | [@usuario3](https://github.com/NeandroBueno) |
-| Anderson Clayton | [@usuario4](https://github.com/AndersonClaytonAssis) |
+| Eduardo Matias | [@edumatias1224](https://github.com/edumatias1224) |
+| Lucas Tridapali | [@LucasTridapali](https://github.com/LucasTridapali) |
+| Neandro Bueno | [@NeandroBueno](https://github.com/NeandroBueno) |
+| Anderson Clayton | [@AndersonClaytonAssis](https://github.com/AndersonClaytonAssis) |
 
 ---
 
