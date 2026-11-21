@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificar Segurança e Conformidade | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Rotina de checagem de segurança e conformidade com a LGPD.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Auditor</a></li>
+      <li aria-current="page">Verificar Segurança e Conformidade</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Verificar Segurança e Conformidade <small>(US-AUD-02)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Auditor</strong>, quero verificar a conformidade com a LGPD, para evitar riscos
+        legais. A rotina de checagem valida a integridade dos hashes de senhas, dos dados
+        criptografados e a ausência de dados pessoais nas respostas.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Executar Rotina de Verificação</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Itens a verificar</legend>
+          <p>
+            <input type="checkbox" id="check-hash" name="itens" value="hash" checked>
+            <label for="check-hash">Integridade dos hashes de senhas (SHA-256)</label>
+          </p>
+          <p>
+            <input type="checkbox" id="check-criptografia" name="itens" value="criptografia" checked>
+            <label for="check-criptografia">Criptografia de dados sensíveis (AES-256)</label>
+          </p>
+          <p>
+            <input type="checkbox" id="check-anonimato" name="itens" value="anonimato" checked>
+            <label for="check-anonimato">Ausência de dados pessoais nas respostas</label>
+          </p>
+          <p>
+            <input type="checkbox" id="check-acesso" name="itens" value="acesso" checked>
+            <label for="check-acesso">Controle de acesso por perfil (menor privilégio)</label>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Executar verificação</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="resultado-titulo">
+      <h3 id="resultado-titulo">Resultado da Última Verificação</h3>
+      <table>
+        <caption>Relatório de conformidade com normas de segurança e LGPD</caption>
+        <thead>
+          <tr>
+            <th scope="col">Item verificado</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Hashes de senhas (SHA-256)</td><td>Conforme</td></tr>
+          <tr><td>Criptografia de dados sensíveis</td><td>Conforme</td></tr>
+          <tr><td>Ausência de dados pessoais nas respostas</td><td>Conforme</td></tr>
+          <tr><td>Controle de acesso por perfil</td><td>Não conforme — revisar permissões do perfil "Suporte Técnico"</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Identificação de Não Conformidade</h3>
+      <p>
+        Quando a varredura detecta que um parâmetro de segurança não foi atendido, o sistema
+        interrompe a emissão do selo de aprovação e sinaliza a anomalia em vermelho no relatório,
+        exibindo: <q>Dados pessoais identificados sem anonimização – Ação requerida.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

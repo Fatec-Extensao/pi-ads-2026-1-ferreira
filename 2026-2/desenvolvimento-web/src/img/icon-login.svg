@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="loginTitle loginDesc">
+  <title id="loginTitle">Ícone de acesso ao sistema</title>
+  <desc id="loginDesc">Silhueta de uma pessoa ao lado de um cadeado fechado, representando a autenticação segura de usuários no sistema.</desc>
+  <rect x="0" y="0" width="200" height="200" fill="#eef1f6"/>
+  <circle cx="80" cy="70" r="30" fill="#2f4b7c"/>
+  <path d="M30 165 C30 120 50 105 80 105 C110 105 130 120 130 165 Z" fill="#2f4b7c"/>
+  <rect x="140" y="110" width="45" height="35" rx="5" fill="#ffa600"/>
+  <path d="M148 110 V95 a14.5 14.5 0 0 1 29 0 V110" fill="none" stroke="#ffa600" stroke-width="7"/>
+  <circle cx="162" cy="127" r="5" fill="#ffffff"/>
+</svg>

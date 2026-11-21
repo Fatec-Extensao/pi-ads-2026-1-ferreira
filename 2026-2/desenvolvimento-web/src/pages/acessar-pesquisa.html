@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acessar Pesquisa com Senha | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário de acesso anônimo à pesquisa por meio de senha alfanumérica.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Participante</a></li>
+      <li aria-current="page">Acessar Pesquisa com Senha</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Acessar Pesquisa com a Senha Recebida <small>(US-PAR-01)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Participante</strong>, quero acessar a pesquisa com a senha recebida, para
+        responder mantendo total anonimato. O Participante não possui conta no sistema — apenas
+        digita a senha alfanumérica de 8 caracteres enviada previamente.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Informe sua senha de acesso</h3>
+      <form action="responder-questionario.html" method="get" novalidate>
+        <fieldset>
+          <legend>Acesso anônimo</legend>
+
+          <p>
+            <label for="senha-acesso">Senha de acesso (8 caracteres alfanuméricos)</label><br>
+            <input
+              type="text"
+              id="senha-acesso"
+              name="senha-acesso"
+              required
+              minlength="8"
+              maxlength="8"
+              pattern="[A-Za-z0-9]{8}"
+              autocomplete="off"
+              placeholder="Ex.: 8K3M9QX2"
+              aria-describedby="senha-acesso-dica">
+            <br>
+            <small id="senha-acesso-dica">Digite exatamente 8 letras e/ou números, sem espaços.</small>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Acessar</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxos Alternativos</h3>
+      <dl>
+        <dt>Senha já utilizada</dt>
+        <dd>O sistema exibe a mensagem: <q>Esta senha já foi utilizada.</q></dd>
+        <dt>Senha inválida</dt>
+        <dd>O sistema exibe: <q>Senha não encontrada. Tentativa 1 de 3.</q> (máximo de 3 tentativas por 15 minutos)</dd>
+        <dt>Pesquisa expirada</dt>
+        <dd>O sistema exibe: <q>Esta pesquisa não está mais disponível.</q></dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

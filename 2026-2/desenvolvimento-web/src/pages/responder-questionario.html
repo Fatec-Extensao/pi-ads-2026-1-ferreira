@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responder Questionário | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário para o participante responder ao questionário de forma anônima.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Participante</a></li>
+      <li aria-current="page">Responder Questionário</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Responder Questionário <small>(US-PAR-02)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Participante</strong>, quero responder de forma simples e rápida, para concluir
+        em menos de 5 minutos. O progresso é salvo automaticamente a cada pergunta e a confirmação
+        final não armazena nenhum identificador do respondente.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Questionário — Categoria: Alunos</h3>
+      <form action="#" method="post" novalidate>
+
+        <fieldset>
+          <legend>1. Como você avalia a infraestrutura do campus? (obrigatória)</legend>
+          <p>
+            <input type="radio" id="q1-otimo" name="q1" value="otimo" required>
+            <label for="q1-otimo">Ótimo</label>
+          </p>
+          <p>
+            <input type="radio" id="q1-bom" name="q1" value="bom" required>
+            <label for="q1-bom">Bom</label>
+          </p>
+          <p>
+            <input type="radio" id="q1-regular" name="q1" value="regular" required>
+            <label for="q1-regular">Regular</label>
+          </p>
+          <p>
+            <input type="radio" id="q1-ruim" name="q1" value="ruim" required>
+            <label for="q1-ruim">Ruim</label>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Quais serviços você mais utiliza? (selecione todos que se aplicam)</legend>
+          <p>
+            <input type="checkbox" id="q2-biblioteca" name="q2" value="biblioteca">
+            <label for="q2-biblioteca">Biblioteca</label>
+          </p>
+          <p>
+            <input type="checkbox" id="q2-laboratorio" name="q2" value="laboratorio">
+            <label for="q2-laboratorio">Laboratórios de informática</label>
+          </p>
+          <p>
+            <input type="checkbox" id="q2-cantina" name="q2" value="cantina">
+            <label for="q2-cantina">Cantina</label>
+          </p>
+          <p>
+            <input type="checkbox" id="q2-coordenacao" name="q2" value="coordenacao">
+            <label for="q2-coordenacao">Coordenação de curso</label>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. Em uma escala de 1 a 5, qual sua satisfação geral com o curso? (obrigatória)</legend>
+          <p>
+            <label for="q3-escala">Nota de satisfação</label><br>
+            <input
+              type="range"
+              id="q3-escala"
+              name="q3"
+              min="1"
+              max="5"
+              step="1"
+              value="3"
+              required
+              list="escala-marcadores"
+              aria-describedby="q3-dica">
+            <datalist id="escala-marcadores">
+              <option value="1" label="1"></option>
+              <option value="2" label="2"></option>
+              <option value="3" label="3"></option>
+              <option value="4" label="4"></option>
+              <option value="5" label="5"></option>
+            </datalist>
+            <br>
+            <small id="q3-dica">1 = Muito insatisfeito · 5 = Muito satisfeito</small>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Deixe sugestões de melhoria (opcional)</legend>
+          <p>
+            <label for="q4-aberta">Sua resposta</label><br>
+            <textarea id="q4-aberta" name="q4" rows="4" cols="50" maxlength="500"></textarea>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Enviar respostas</button>
+          <button type="submit" formnovalidate>Salvar rascunho e continuar depois</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Pergunta Obrigatória não Respondida</h3>
+      <p>
+        Se o Participante tentar enviar o questionário sem preencher uma pergunta obrigatória, o
+        sistema rola a tela até a pergunta pendente, destaca-a visualmente e exibe o alerta:
+        <q>Responda todas as perguntas obrigatórias.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

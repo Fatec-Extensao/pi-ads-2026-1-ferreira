@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerar Relatório de Resultados | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário de filtros e visualização de relatório estatístico consolidado dos resultados da pesquisa.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Administrador</a></li>
+      <li aria-current="page">Gerar Relatório de Resultados</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Gerar Relatório de Resultados <small>(US-ADM-05)</small></h2>
+
+    <figure>
+      <img src="../img/icon-relatorio.svg" alt="Gráfico de barras com alturas crescentes e uma linha de tendência sobreposta">
+      <figcaption>Relatórios exibem apenas dados agregados — nunca respostas individuais.</figcaption>
+    </figure>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Administrador</strong>, quero gerar relatórios de resultados, para acompanhar o
+        desempenho da pesquisa. Os relatórios exibem apenas dados agregados (percentuais e totais) e
+        nunca expõem respostas individuais, preservando o anonimato.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Filtros do Relatório</h3>
+      <form action="#" method="get" novalidate>
+        <fieldset>
+          <legend>Filtros obrigatórios</legend>
+
+          <p>
+            <label for="pesquisa-rel">Pesquisa</label><br>
+            <select id="pesquisa-rel" name="pesquisa-rel" required>
+              <option value="" selected disabled>Selecione a pesquisa</option>
+              <option value="1">Pesquisa de Satisfação Acadêmica 2026</option>
+              <option value="2">Pesquisa Clima Organizacional 2026</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="periodo-inicio">Período — de</label><br>
+            <input type="date" id="periodo-inicio" name="periodo-inicio" required>
+          </p>
+          <p>
+            <label for="periodo-fim">Período — até</label><br>
+            <input type="date" id="periodo-fim" name="periodo-fim" required>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Gerar relatório</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="resultado-titulo">
+      <h3 id="resultado-titulo">Resultado por Pergunta (exemplo)</h3>
+      <table>
+        <caption>Resultado agregado da pergunta "Como você avalia a infraestrutura do campus?"</caption>
+        <thead>
+          <tr>
+            <th scope="col">Alternativa</th>
+            <th scope="col">Total de respostas</th>
+            <th scope="col">Percentual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ótimo</td><td>142</td><td>38%</td></tr>
+          <tr><td>Bom</td><td>168</td><td>45%</td></tr>
+          <tr><td>Regular</td><td>52</td><td>14%</td></tr>
+          <tr><td>Ruim</td><td>11</td><td>3%</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th scope="row">Total</th><td>373</td><td>100%</td></tr>
+        </tfoot>
+      </table>
+      <p>
+        <a href="#" download>Exportar em PDF</a> |
+        <a href="#" download>Exportar em CSV</a>
+      </p>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Sem Respostas</h3>
+      <p>
+        Caso nenhum participante tenha respondido à pesquisa no período filtrado, a renderização
+        gráfica é suprimida e o sistema exibe o aviso: <q>Nenhuma resposta encontrada para os
+        filtros.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

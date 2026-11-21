@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprovar Pesquisas | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário para aprovação ou reprovação de pesquisas antes de sua aplicação.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Secretaria</a></li>
+      <li aria-current="page">Aprovar Pesquisas Antes da Aplicação</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Aprovar Pesquisas Antes da Aplicação <small>(US-SEC-01)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Secretaria</strong>, quero aprovar pesquisas antes da liberação, para garantir
+        conformidade institucional. Apenas pesquisas com status "Em análise" aparecem para revisão.
+      </p>
+    </section>
+
+    <section aria-labelledby="pendentes-titulo">
+      <h3 id="pendentes-titulo">Pesquisas pendentes de aprovação</h3>
+      <table>
+        <caption>Pesquisas com status "Em análise" aguardando decisão da Secretaria</caption>
+        <thead>
+          <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Categorias</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Pesquisa Clima Organizacional 2026</td><td>Colaboradores</td><td>Em análise</td></tr>
+          <tr><td>Pesquisa de Egressos 2026</td><td>Alunos</td><td>Em análise</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Registrar decisão</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Pesquisa selecionada</legend>
+          <p>
+            <label for="pesquisa-aprovar">Pesquisa</label><br>
+            <select id="pesquisa-aprovar" name="pesquisa-aprovar" required>
+              <option value="" selected disabled>Selecione a pesquisa</option>
+              <option value="1">Pesquisa Clima Organizacional 2026</option>
+              <option value="2">Pesquisa de Egressos 2026</option>
+            </select>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Decisão</legend>
+          <p>
+            <input type="radio" id="decisao-aprovar" name="decisao" value="aprovar" required>
+            <label for="decisao-aprovar">Aprovar pesquisa</label>
+          </p>
+          <p>
+            <input type="radio" id="decisao-reprovar" name="decisao" value="reprovar" required>
+            <label for="decisao-reprovar">Reprovar pesquisa</label>
+          </p>
+        </fieldset>
+
+        <p>
+          <label for="justificativa">Justificativa (obrigatória em caso de reprovação)</label><br>
+          <textarea
+            id="justificativa"
+            name="justificativa"
+            rows="3"
+            cols="50"
+            minlength="10"
+            aria-describedby="justificativa-dica"></textarea>
+          <br>
+          <small id="justificativa-dica">Mínimo de 10 caracteres quando a decisão for "Reprovar".</small>
+        </p>
+
+        <p>
+          <button type="submit">Registrar decisão</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Reprovação sem Justificativa</h3>
+      <p>
+        Se a Secretaria tentar reprovar sem preencher a justificativa (mínimo 10 caracteres), o
+        sistema exibe: <q>Informe o motivo da reprovação.</q> O status da pesquisa permanece "Em
+        análise" até o preenchimento válido.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

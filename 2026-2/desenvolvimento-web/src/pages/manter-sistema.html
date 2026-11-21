@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manter Sistema em Operação | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Dashboard de monitoramento de disponibilidade dos serviços do sistema.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Suporte Técnico</a></li>
+      <li aria-current="page">Manter Sistema em Operação</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Manter Sistema em Operação <small>(US-SUP-01)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Suporte Técnico</strong>, quero monitorar o sistema continuamente, para garantir
+        disponibilidade mínima de 99%. O dashboard é atualizado a cada 30 segundos e alertas
+        automáticos são disparados em até 5 minutos após uma falha.
+      </p>
+    </section>
+
+    <section aria-labelledby="status-titulo">
+      <h3 id="status-titulo">Status dos Serviços</h3>
+      <table>
+        <caption>Situação atual de disponibilidade dos serviços monitorados</caption>
+        <thead>
+          <tr>
+            <th scope="col">Serviço</th>
+            <th scope="col">Status</th>
+            <th scope="col">Uptime (30 dias)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>API de Pesquisas</td><td>Operacional</td><td>99,7%</td></tr>
+          <tr><td>Banco de Dados</td><td>Operacional</td><td>99,9%</td></tr>
+          <tr><td>Serviço de Geração de Senhas</td><td>Operacional</td><td>99,5%</td></tr>
+          <tr><td>Serviço de Relatórios</td><td>Degradado</td><td>97,2%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Registrar Verificação Manual</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Verificação de serviço</legend>
+          <p>
+            <label for="servico">Serviço verificado</label><br>
+            <select id="servico" name="servico" required>
+              <option value="" selected disabled>Selecione o serviço</option>
+              <option value="api">API de Pesquisas</option>
+              <option value="banco">Banco de Dados</option>
+              <option value="senhas">Serviço de Geração de Senhas</option>
+              <option value="relatorios">Serviço de Relatórios</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="observacao-sup">Observações</label><br>
+            <textarea id="observacao-sup" name="observacao-sup" rows="3" cols="50"></textarea>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Registrar verificação</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Falha Sistêmica</h3>
+      <p>
+        Caso um serviço sofra queda repentina, o agente de monitoramento captura o erro em menos de
+        5 minutos e dispara um e-mail/notificação crítica para o time de plantão técnico.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

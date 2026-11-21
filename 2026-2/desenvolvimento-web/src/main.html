@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Principal | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Painel principal com acesso a todas as funcionalidades do Sistema de Gestão de Pesquisas por Questionários.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="main.html" aria-current="page">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Bem-vindo(a) ao Sistema</h2>
+    <p>
+      Este é o painel principal. Abaixo estão organizadas, por perfil de usuário, todas as
+      funcionalidades previstas na documentação de requisitos e nos diagramas de caso de uso
+      e de atividades do projeto. Selecione uma funcionalidade para abrir sua respectiva página.
+    </p>
+
+    <nav aria-label="Funcionalidades do sistema por perfil">
+
+      <details open>
+        <summary>Ver funcionalidades — Administrador</summary>
+        <h3>Administrador</h3>
+        <p>O Administrador tem controle total sobre o ciclo de vida das pesquisas.</p>
+        <ul>
+          <li><a href="pages/cadastrar-pesquisa.html">Cadastrar Nova Pesquisa (US-ADM-01)</a></li>
+          <li><a href="pages/cadastrar-categorias.html">Cadastrar Categorias de Participantes (US-ADM-02)</a></li>
+          <li><a href="pages/criar-questionario.html">Criar Questionário por Categoria (US-ADM-03)</a></li>
+          <li><a href="pages/gerar-senhas.html">Gerar Lote de Senhas Anônimas (US-ADM-04)</a></li>
+          <li><a href="pages/gerar-relatorio.html">Gerar Relatório de Resultados (US-ADM-05)</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Ver funcionalidades — Participante</summary>
+        <h3>Participante</h3>
+        <p>Usuário final que responde às pesquisas sob total anonimato.</p>
+        <ul>
+          <li><a href="pages/acessar-pesquisa.html">Acessar Pesquisa com Senha (US-PAR-01)</a></li>
+          <li><a href="pages/responder-questionario.html">Responder Questionário (US-PAR-02)</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Ver funcionalidades — Secretaria</summary>
+        <h3>Secretaria</h3>
+        <p>Atua na governança, validando pesquisas e analisando relatórios institucionais.</p>
+        <ul>
+          <li><a href="pages/aprovar-pesquisas.html">Aprovar Pesquisas Antes da Aplicação (US-SEC-01)</a></li>
+          <li><a href="pages/analisar-relatorios-institucionais.html">Analisar Relatórios Institucionais (US-SEC-02)</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Ver funcionalidades — Analista de Dados</summary>
+        <h3>Analista de Dados</h3>
+        <p>Explora resultados sob ótica estatística e exporta dados consolidados.</p>
+        <ul>
+          <li><a href="pages/analisar-resultados.html">Analisar Resultados Detalhados (US-ANA-01)</a></li>
+          <li><a href="pages/exportar-dados.html">Gerar Insights e Exportar Dados (US-ANA-02)</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Ver funcionalidades — Suporte Técnico</summary>
+        <h3>Suporte Técnico</h3>
+        <p>Responsável pela infraestrutura, monitoramento e cumprimento de SLA.</p>
+        <ul>
+          <li><a href="pages/manter-sistema.html">Manter Sistema em Operação (US-SUP-01)</a></li>
+          <li><a href="pages/resolver-erros.html">Resolver Erros e Falhas (US-SUP-02)</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Ver funcionalidades — Auditor</summary>
+        <h3>Auditor</h3>
+        <p>Assegura integridade, rastreabilidade e conformidade legal (LGPD).</p>
+        <ul>
+          <li><a href="pages/auditar-dados.html">Auditar os Dados Coletados (US-AUD-01)</a></li>
+          <li><a href="pages/verificar-conformidade.html">Verificar Segurança e Conformidade (US-AUD-02)</a></li>
+        </ul>
+      </details>
+
+    </nav>
+
+    <section aria-labelledby="rf-titulo">
+      <h2 id="rf-titulo">Requisitos Funcionais Contemplados</h2>
+      <p>Resumo dos principais requisitos funcionais atendidos pelas funcionalidades acima.</p>
+      <table>
+        <caption>Requisitos funcionais do sistema (RF01 a RF12)</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">RF01</th><td>Cadastrar pesquisas</td></tr>
+          <tr><th scope="row">RF02</th><td>Cadastrar categorias de participantes</td></tr>
+          <tr><th scope="row">RF03</th><td>Criar questionários por categoria</td></tr>
+          <tr><th scope="row">RF04</th><td>Cadastrar perguntas e alternativas de resposta</td></tr>
+          <tr><th scope="row">RF05</th><td>Gerar senhas anônimas por lote e por categoria</td></tr>
+          <tr><th scope="row">RF06</th><td>Exportar senhas geradas (PDF ou CSV)</td></tr>
+          <tr><th scope="row">RF07</th><td>Aplicar questionários via senha anônima</td></tr>
+          <tr><th scope="row">RF08</th><td>Registrar respostas no banco de dados</td></tr>
+          <tr><th scope="row">RF09</th><td>Impedir reutilização de senhas</td></tr>
+          <tr><th scope="row">RF10</th><td>Monitorar participação em tempo real (dashboard)</td></tr>
+          <tr><th scope="row">RF11</th><td>Gerar relatórios estatísticos por pergunta, categoria e comparativos</td></tr>
+          <tr><th scope="row">RF12</th><td>Exportar resultados em PDF e CSV</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <nav aria-label="Links do rodapé">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
+</html>

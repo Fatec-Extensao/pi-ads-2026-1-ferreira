@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Questionário por Categoria | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário para criação de perguntas e alternativas de um questionário vinculado a uma categoria de participantes.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Administrador</a></li>
+      <li aria-current="page">Criar Questionário por Categoria</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Criar Questionário por Categoria <small>(US-ADM-03)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Administrador</strong>, quero criar um questionário vinculado a uma categoria,
+        para adequar as perguntas ao perfil do respondente. Cada categoria pode possuir seu próprio
+        questionário, com no mínimo 1 e no máximo 50 perguntas.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Formulário de Criação de Pergunta</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Vincular à categoria</legend>
+          <p>
+            <label for="categoria">Categoria de participantes</label><br>
+            <select id="categoria" name="categoria" required>
+              <option value="" selected disabled>Selecione a categoria</option>
+              <option value="alunos">Alunos</option>
+              <option value="professores">Professores</option>
+              <option value="colaboradores">Colaboradores</option>
+            </select>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Dados da pergunta</legend>
+
+          <p>
+            <label for="enunciado">Enunciado da pergunta</label><br>
+            <textarea
+              id="enunciado"
+              name="enunciado"
+              rows="3"
+              cols="50"
+              required
+              placeholder="Ex.: Como você avalia a infraestrutura do campus?"></textarea>
+          </p>
+
+          <fieldset>
+            <legend>Tipo de questão</legend>
+            <p>
+              <input type="radio" id="tipo-unica" name="tipo" value="multipla-unica" checked>
+              <label for="tipo-unica">Múltipla escolha (uma resposta)</label>
+            </p>
+            <p>
+              <input type="radio" id="tipo-varias" name="tipo" value="multipla-varias">
+              <label for="tipo-varias">Múltipla escolha (várias respostas)</label>
+            </p>
+            <p>
+              <input type="radio" id="tipo-escala" name="tipo" value="escala">
+              <label for="tipo-escala">Escala Likert (1 a 5)</label>
+            </p>
+            <p>
+              <input type="radio" id="tipo-aberta" name="tipo" value="aberta">
+              <label for="tipo-aberta">Resposta aberta (texto)</label>
+            </p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Alternativas de resposta (para questões de múltipla escolha)</legend>
+            <p>
+              <label for="alt1">Alternativa 1</label><br>
+              <input type="text" id="alt1" name="alt1" maxlength="150">
+            </p>
+            <p>
+              <label for="alt2">Alternativa 2</label><br>
+              <input type="text" id="alt2" name="alt2" maxlength="150">
+            </p>
+            <p>
+              <label for="alt3">Alternativa 3</label><br>
+              <input type="text" id="alt3" name="alt3" maxlength="150">
+            </p>
+          </fieldset>
+
+          <p>
+            <input type="checkbox" id="obrigatoria" name="obrigatoria" value="sim" checked>
+            <label for="obrigatoria">Pergunta de resposta obrigatória</label>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Adicionar pergunta ao questionário</button>
+          <button type="submit" formnovalidate>Salvar questionário</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="perguntas-titulo">
+      <h3 id="perguntas-titulo">Perguntas já adicionadas ao questionário</h3>
+      <table>
+        <caption>Perguntas cadastradas para a categoria "Alunos"</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col">Enunciado</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Obrigatória</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Como você avalia a infraestrutura do campus?</td><td>Escala Likert</td><td>Sim</td></tr>
+          <tr><td>2</td><td>Quais serviços você mais utiliza?</td><td>Múltipla escolha (várias)</td><td>Não</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Questionário sem Perguntas</h3>
+      <p>
+        Ao tentar salvar o questionário sem nenhuma pergunta cadastrada, o sistema exibe o aviso:
+        <q>Adicione pelo menos 1 pergunta.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

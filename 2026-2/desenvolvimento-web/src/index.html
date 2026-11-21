@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestão de Pesquisas por Questionários | Fatec Lins</title>
+  <meta name="description" content="Sistema Web para criação, aplicação e análise de pesquisas institucionais com acesso anônimo por senha, desenvolvido como Projeto Integrador da Fatec Lins.">
+  <meta name="author" content="Anderson Clayton Pereira de Assis, Eduardo Matias Ferreira, Lucas Tridapali, Neandro">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+    <p>Coleta e análise de pesquisas institucionais com total anonimato dos participantes</p>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="index.html" aria-current="page">Início</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <main id="conteudo-principal">
+
+    <section aria-labelledby="apresentacao-titulo">
+      <h2 id="apresentacao-titulo">Apresentação do Projeto</h2>
+      <figure>
+        <img src="img/banner-pesquisa.svg" alt="Ilustração de um formulário de pesquisa com perguntas de múltipla escolha ao lado de um gráfico de barras crescente">
+        <figcaption>Do questionário à análise: o sistema conduz toda a jornada da pesquisa institucional.</figcaption>
+      </figure>
+      <p>
+        Este projeto tem como objetivo proporcionar uma experiência prática de desenvolvimento de
+        software, envolvendo análise de requisitos, modelagem de dados, desenvolvimento de aplicações
+        web, usabilidade, segurança da informação e geração de relatórios analíticos.
+      </p>
+      <p>
+        O sistema permite a <strong>criação</strong>, <strong>aplicação</strong> e <strong>análise</strong>
+        de pesquisas institucionais, garantindo o anonimato dos participantes e a organização das
+        respostas por categorias de respondentes (Alunos, Professores, Colaboradores).
+      </p>
+    </section>
+
+    <section aria-labelledby="objetivo-titulo">
+      <h2 id="objetivo-titulo">Objetivo do Sistema</h2>
+      <p>Desenvolver um Sistema Web para Gestão de Pesquisas por Questionários, permitindo:</p>
+      <ul>
+        <li>Cadastro e gerenciamento de pesquisas</li>
+        <li>Definição de categorias de participantes</li>
+        <li>Criação de questionários específicos por categoria</li>
+        <li>Aplicação da pesquisa com acesso por senha anônima</li>
+        <li>Coleta e armazenamento das respostas</li>
+        <li>Monitoramento da participação em tempo real</li>
+        <li>Geração de relatórios estatísticos</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="modulos-titulo">
+      <h2 id="modulos-titulo">Módulos Funcionais</h2>
+
+      <article aria-labelledby="mod1">
+        <h3 id="mod1">1. Cadastro de Pesquisa</h3>
+        <p>Criação e configuração das pesquisas: título, descrição, período de aplicação e status.</p>
+      </article>
+
+      <article aria-labelledby="mod2">
+        <h3 id="mod2">2. Questionários</h3>
+        <p>Cadastro de perguntas, alternativas e associação a categorias de participantes.</p>
+      </article>
+
+      <article aria-labelledby="mod3">
+        <h3 id="mod3">3. Geração de Senhas</h3>
+        <p>Geração de senhas anônimas de acesso, únicas e associadas a uma categoria.</p>
+      </article>
+
+      <article aria-labelledby="mod4">
+        <h3 id="mod4">4. Aplicação da Pesquisa</h3>
+        <p>Interface para os participantes responderem à pesquisa de forma anônima e segura.</p>
+      </article>
+
+      <article aria-labelledby="mod5">
+        <h3 id="mod5">5. Gestão (Dashboard)</h3>
+        <p>Acompanhamento de indicadores: senhas geradas, respostas recebidas e taxa de participação.</p>
+      </article>
+
+      <article aria-labelledby="mod6">
+        <h3 id="mod6">6. Relatórios</h3>
+        <p>Geração de relatórios analíticos por pergunta, categoria e exportação em PDF/CSV.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="atores-titulo">
+      <h2 id="atores-titulo">Atores do Sistema</h2>
+      <p>Os atores representam os perfis de usuários que interagem com o sistema.</p>
+      <table>
+        <caption>Perfis de acesso e suas responsabilidades no sistema</caption>
+        <thead>
+          <tr>
+            <th scope="col">Ator</th>
+            <th scope="col">Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Administrador</th>
+            <td>Cria e gerencia pesquisas, categorias, questionários, senhas e relatórios. Acesso total.</td>
+          </tr>
+          <tr>
+            <th scope="row">Participante</th>
+            <td>Recebe uma senha anônima e responde ao questionário correspondente à sua categoria.</td>
+          </tr>
+          <tr>
+            <th scope="row">Secretaria</th>
+            <td>Aprova pesquisas antes da aplicação e analisa relatórios institucionais.</td>
+          </tr>
+          <tr>
+            <th scope="row">Analista de Dados</th>
+            <td>Analisa resultados detalhados, gera insights e exporta dados para ferramentas externas.</td>
+          </tr>
+          <tr>
+            <th scope="row">Suporte Técnico</th>
+            <td>Mantém o sistema em operação e resolve erros e falhas reportadas.</td>
+          </tr>
+          <tr>
+            <th scope="row">Auditor</th>
+            <td>Audita os dados coletados e verifica segurança e conformidade com normas vigentes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="acesso-titulo">
+      <h2 id="acesso-titulo">Acessar o Sistema</h2>
+      <p>Para utilizar as funcionalidades do sistema, autentique-se com seu perfil de usuário.</p>
+      <p><a href="login.html">Ir para a tela de login →</a></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <h2>Sobre o Projeto</h2>
+    <p>Projeto Integrador I — Curso de Análise e Desenvolvimento de Sistemas</p>
+    <p>Fatec Lins — Centro Estadual de Educação Tecnológica Paula Souza</p>
+    <address>
+      Autores: Anderson Clayton Pereira de Assis, Eduardo Matias Ferreira, Lucas Tridapali, Neandro
+    </address>
+    <p>Lins-SP, 2026</p>
+    <nav aria-label="Links do rodapé">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="main.html">Painel</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+</body>
+</html>

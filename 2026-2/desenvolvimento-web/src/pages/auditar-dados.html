@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditar os Dados Coletados | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Consulta ao log de auditoria técnica com registros imutáveis de transações do sistema.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Auditor</a></li>
+      <li aria-current="page">Auditar os Dados Coletados</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Auditar os Dados Coletados <small>(US-AUD-01)</small></h2>
+
+    <figure>
+      <img src="../img/icon-seguranca.svg" alt="Escudo com um cadeado ao centro, simbolizando integridade e conformidade dos dados">
+      <figcaption>Logs de auditoria são imutáveis (WORM) e mantidos com retenção mínima de 5 anos.</figcaption>
+    </figure>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Auditor</strong>, quero auditar os dados coletados, para garantir integridade e
+        rastreabilidade. O acesso é somente leitura e a trilha registra quem fez o quê e quando,
+        sobre registros imutáveis de transações.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Consultar Log de Auditoria</h3>
+      <form action="#" method="get" novalidate>
+        <fieldset>
+          <legend>Filtro do log</legend>
+          <p>
+            <label for="data-auditoria-inicio">Data — de</label><br>
+            <input type="date" id="data-auditoria-inicio" name="data-auditoria-inicio" required>
+          </p>
+          <p>
+            <label for="data-auditoria-fim">Data — até</label><br>
+            <input type="date" id="data-auditoria-fim" name="data-auditoria-fim" required>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Consultar log</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="log-titulo">
+      <h3 id="log-titulo">Trilha de Auditoria (exemplo)</h3>
+      <table>
+        <caption>Registros imutáveis de ações críticas realizadas no sistema</caption>
+        <thead>
+          <tr>
+            <th scope="col">Data/Hora</th>
+            <th scope="col">Usuário</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>15/09/2026 10:02</td><td>admin.carla</td><td>Cadastrou nova pesquisa</td></tr>
+          <tr><td>15/09/2026 11:47</td><td>ana.silva</td><td>Exportou dados anonimizados</td></tr>
+          <tr><td>14/09/2026 09:20</td><td>secretaria.rh</td><td>Aprovou pesquisa (Clima Organizacional)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Log Indisponível</h3>
+      <p>
+        Se os logs solicitados estiverem em processo de backup concorrente, o sistema nega
+        temporariamente o acesso e exibe: <q>Serviço de logs temporariamente indisponível para
+        consulta.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-labelledby="secTitle secDesc">
+  <title id="secTitle">Ícone de escudo de segurança</title>
+  <desc id="secDesc">Escudo estilizado com um cadeado ao centro, simbolizando integridade, confidencialidade e conformidade dos dados auditados.</desc>
+  <path d="M100 10 L180 40 V100 C180 150 145 190 100 210 C55 190 20 150 20 100 V40 Z" fill="#1f6f4a"/>
+  <path d="M100 25 L165 50 V100 C165 142 137 175 100 193 C63 175 35 142 35 100 V50 Z" fill="#ffffff"/>
+  <rect x="75" y="100" width="50" height="40" rx="6" fill="#1f6f4a"/>
+  <path d="M85 100 V85 a15 15 0 0 1 30 0 V100" fill="none" stroke="#1f6f4a" stroke-width="8"/>
+  <circle cx="100" cy="118" r="6" fill="#ffffff"/>
+</svg>

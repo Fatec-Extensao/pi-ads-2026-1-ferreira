@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 180" role="img" aria-labelledby="repTitle repDesc">
+  <title id="repTitle">Ícone de gráfico de relatório estatístico</title>
+  <desc id="repDesc">Gráfico de barras verticais de alturas crescentes com uma linha de tendência sobreposta, representando um relatório analítico de respostas.</desc>
+  <rect x="0" y="0" width="220" height="180" fill="#f2f4f7"/>
+  <line x1="20" y1="15" x2="20" y2="160" stroke="#333" stroke-width="2"/>
+  <line x1="20" y1="160" x2="205" y2="160" stroke="#333" stroke-width="2"/>
+  <rect x="40" y="120" width="24" height="40" fill="#2f4b7c"/>
+  <rect x="80" y="95" width="24" height="65" fill="#665191"/>
+  <rect x="120" y="60" width="24" height="100" fill="#a05195"/>
+  <rect x="160" y="30" width="24" height="130" fill="#d45087"/>
+  <polyline points="52,115 92,90 132,55 172,25" fill="none" stroke="#ffa600" stroke-width="3"/>
+</svg>

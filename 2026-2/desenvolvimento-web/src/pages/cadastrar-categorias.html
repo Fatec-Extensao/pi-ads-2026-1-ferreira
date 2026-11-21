@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Categorias de Participantes | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário para cadastro de categorias de participantes de uma pesquisa.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Administrador</a></li>
+      <li aria-current="page">Cadastrar Categorias de Participantes</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Cadastrar Categorias de Participantes <small>(US-ADM-02)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Administrador</strong>, quero cadastrar categorias (ex.: Alunos, Professores,
+        Colaboradores), para segmentar o público-alvo de cada pesquisa. Cada pesquisa pode possuir
+        uma ou mais categorias de participantes.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Formulário de Cadastro</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Nova categoria</legend>
+
+          <p>
+            <label for="pesquisa">Pesquisa em edição</label><br>
+            <select id="pesquisa" name="pesquisa" required>
+              <option value="" selected disabled>Selecione a pesquisa</option>
+              <option value="1">Pesquisa de Satisfação Acadêmica 2026</option>
+              <option value="2">Pesquisa Clima Organizacional 2026</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="nome-categoria">Nome da categoria</label><br>
+            <input
+              type="text"
+              id="nome-categoria"
+              name="nome-categoria"
+              required
+              maxlength="50"
+              placeholder="Ex.: Alunos"
+              aria-describedby="categoria-dica">
+            <br>
+            <small id="categoria-dica">Máximo de 50 caracteres. O nome deve ser único (não diferencia maiúsculas/minúsculas).</small>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Adicionar categoria</button>
+          <button type="reset">Limpar</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="categorias-titulo">
+      <h3 id="categorias-titulo">Categorias já cadastradas</h3>
+      <table>
+        <caption>Categorias de participantes vinculadas à pesquisa selecionada</caption>
+        <thead>
+          <tr>
+            <th scope="col">Categoria</th>
+            <th scope="col">Pesquisa vinculada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Alunos</td><td>Pesquisa de Satisfação Acadêmica 2026</td></tr>
+          <tr><td>Professores</td><td>Pesquisa de Satisfação Acadêmica 2026</td></tr>
+          <tr><td>Colaboradores</td><td>Pesquisa Clima Organizacional 2026</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Nome Duplicado</h3>
+      <p>
+        Caso o Administrador digite o nome de uma categoria já existente, o sistema bloqueia a
+        inserção e exibe o alerta: <q>Categoria já existe.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

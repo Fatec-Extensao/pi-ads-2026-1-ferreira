@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analisar Resultados Detalhados | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Filtros avançados e visualização de correlações entre categorias, períodos e perguntas.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Analista de Dados</a></li>
+      <li aria-current="page">Analisar Resultados Detalhados</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Analisar Resultados Detalhados <small>(US-ANA-01)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Analista de Dados</strong>, quero analisar resultados com filtros avançados, para
+        identificar tendências. O acesso é somente leitura e combina categoria, intervalos de período
+        e cruzamento de perguntas.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Filtros Avançados</h3>
+      <form action="#" method="get" novalidate>
+        <fieldset>
+          <legend>Critérios de análise (selecione ao menos um)</legend>
+
+          <p>
+            <label for="categoria-analise">Categoria</label><br>
+            <select id="categoria-analise" name="categoria-analise">
+              <option value="">— Não filtrar —</option>
+              <option value="alunos">Alunos</option>
+              <option value="professores">Professores</option>
+              <option value="colaboradores">Colaboradores</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="periodo-analise-inicio">Período — de</label><br>
+            <input type="date" id="periodo-analise-inicio" name="periodo-analise-inicio">
+          </p>
+          <p>
+            <label for="periodo-analise-fim">Período — até</label><br>
+            <input type="date" id="periodo-analise-fim" name="periodo-analise-fim">
+          </p>
+
+          <p>
+            <label for="pergunta-analise">Pergunta específica</label><br>
+            <select id="pergunta-analise" name="pergunta-analise">
+              <option value="">— Todas as perguntas —</option>
+              <option value="p1">Como você avalia a infraestrutura do campus?</option>
+              <option value="p2">Quais serviços você mais utiliza?</option>
+            </select>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Renderizar gráficos de correlação</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="resultado-titulo">
+      <h3 id="resultado-titulo">Correlação Categoria × Satisfação (exemplo)</h3>
+      <table>
+        <caption>Média de satisfação (escala 1–5) por categoria de participante</caption>
+        <thead>
+          <tr>
+            <th scope="col">Categoria</th>
+            <th scope="col">Respostas</th>
+            <th scope="col">Média de satisfação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Alunos</td><td>373</td><td>3,8</td></tr>
+          <tr><td>Professores</td><td>96</td><td>4,1</td></tr>
+          <tr><td>Colaboradores</td><td>58</td><td>3,5</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Nenhum Filtro Selecionado</h3>
+      <p>
+        Se o Analista solicitar o processamento sem nenhum critério selecionado, o sistema recusa a
+        operação e exibe: <q>Selecione pelo menos um critério.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

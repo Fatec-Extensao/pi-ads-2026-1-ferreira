@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Nova Pesquisa | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário para cadastro de uma nova pesquisa institucional: título, descrição, período e status.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Administrador</a></li>
+      <li aria-current="page">Cadastrar Nova Pesquisa</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Cadastrar Nova Pesquisa <small>(US-ADM-01)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Administrador</strong>, quero cadastrar uma nova pesquisa informando título,
+        descrição e período, para iniciar o ciclo de vida de uma pesquisa institucional.
+      </p>
+      <p>
+        Ao salvar, o sistema valida os campos obrigatórios, persiste a pesquisa com status inicial
+        <strong>"Rascunho"</strong> e registra a operação na trilha de auditoria.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Formulário de Cadastro</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Dados da pesquisa</legend>
+
+          <p>
+            <label for="titulo">Título da pesquisa</label><br>
+            <input
+              type="text"
+              id="titulo"
+              name="titulo"
+              required
+              minlength="5"
+              maxlength="100"
+              placeholder="Ex.: Pesquisa de Satisfação Acadêmica 2026"
+              aria-describedby="titulo-dica">
+            <br>
+            <small id="titulo-dica">Entre 5 e 100 caracteres.</small>
+          </p>
+
+          <p>
+            <label for="descricao">Descrição</label><br>
+            <textarea
+              id="descricao"
+              name="descricao"
+              rows="4"
+              cols="50"
+              required
+              aria-describedby="descricao-dica"></textarea>
+            <br>
+            <small id="descricao-dica">Descreva o objetivo e o público-alvo da pesquisa.</small>
+          </p>
+
+          <p>
+            <label for="data-inicio">Data/hora de início</label><br>
+            <input type="datetime-local" id="data-inicio" name="data-inicio" required>
+          </p>
+
+          <p>
+            <label for="data-fim">Data/hora de fim</label><br>
+            <input
+              type="datetime-local"
+              id="data-fim"
+              name="data-fim"
+              required
+              aria-describedby="periodo-dica">
+            <br>
+            <small id="periodo-dica">A data de fim deve ser posterior à data de início.</small>
+          </p>
+
+          <fieldset>
+            <legend>Status inicial</legend>
+            <p>
+              <input type="radio" id="status-rascunho" name="status" value="rascunho" checked>
+              <label for="status-rascunho">Rascunho (padrão)</label>
+            </p>
+            <p>
+              <input type="radio" id="status-ativa" name="status" value="ativa">
+              <label for="status-ativa">Ativa</label>
+            </p>
+          </fieldset>
+        </fieldset>
+
+        <p>
+          <button type="submit">Salvar pesquisa</button>
+          <button type="reset">Limpar</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Período Inválido</h3>
+      <p>
+        Se a data de fim for anterior à data de início (ou retroativa), o sistema interrompe o
+        salvamento e exibe: <q>Data fim deve ser posterior à data início.</q> Os campos preenchidos
+        são mantidos na tela para correção.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

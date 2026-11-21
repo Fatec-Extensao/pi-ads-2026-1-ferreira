@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerar Lote de Senhas Anônimas | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário para geração de lotes de senhas anônimas de acesso à pesquisa, associadas a uma categoria.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Administrador</a></li>
+      <li aria-current="page">Gerar Lote de Senhas Anônimas</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Gerar Lote de Senhas Anônimas <small>(US-ADM-04)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Administrador</strong>, quero gerar um lote de senhas anônimas, para distribuir
+        acessos seguros sem identificar os participantes. As senhas possuem 8 caracteres
+        alfanuméricos únicos e são armazenadas apenas em formato de hash (SHA-256), respeitando a
+        LGPD e o anonimato dos respondentes.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Formulário de Geração</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Parâmetros do lote</legend>
+
+          <p>
+            <label for="categoria-senha">Categoria de participantes</label><br>
+            <select id="categoria-senha" name="categoria-senha" required>
+              <option value="" selected disabled>Selecione a categoria</option>
+              <option value="alunos">Alunos</option>
+              <option value="professores">Professores</option>
+              <option value="colaboradores">Colaboradores</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="quantidade">Quantidade de senhas</label><br>
+            <input
+              type="number"
+              id="quantidade"
+              name="quantidade"
+              required
+              min="1"
+              max="10000"
+              step="1"
+              value="50"
+              aria-describedby="quantidade-dica">
+            <br>
+            <small id="quantidade-dica">Informe um valor inteiro maior que zero.</small>
+          </p>
+
+          <fieldset>
+            <legend>Formato de exportação</legend>
+            <p>
+              <input type="radio" id="formato-pdf" name="formato" value="pdf" checked>
+              <label for="formato-pdf">PDF</label>
+            </p>
+            <p>
+              <input type="radio" id="formato-csv" name="formato" value="csv">
+              <label for="formato-csv">CSV</label>
+            </p>
+          </fieldset>
+        </fieldset>
+
+        <p>
+          <button type="submit">Gerar lote de senhas</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="senhas-titulo">
+      <h3 id="senhas-titulo">Último lote gerado (exemplo)</h3>
+      <table>
+        <caption>Amostra de senhas geradas para a categoria "Alunos"</caption>
+        <thead>
+          <tr>
+            <th scope="col">Senha</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>8K3M9QX2</td><td>Alunos</td><td>Não utilizada</td></tr>
+          <tr><td>P7T1LZW4</td><td>Alunos</td><td>Não utilizada</td></tr>
+          <tr><td>Y2H6RC0B</td><td>Alunos</td><td>Utilizada</td></tr>
+        </tbody>
+      </table>
+      <p><a href="#" download>Exportar lote completo (CSV)</a></p>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Quantidade Inválida</h3>
+      <p>
+        Se o Administrador informar 0 (zero) ou um valor inválido, o sistema exibe a mensagem de
+        erro: <q>Informe quantidade maior que zero.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

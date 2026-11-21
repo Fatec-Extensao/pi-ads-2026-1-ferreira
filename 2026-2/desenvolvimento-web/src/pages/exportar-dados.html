@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerar Insights e Exportar Dados | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário para exportação anonimizada de dados agregados para ferramentas de BI.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Analista de Dados</a></li>
+      <li aria-current="page">Gerar Insights e Exportar Dados</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Gerar Insights e Exportar Dados <small>(US-ANA-02)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Analista de Dados</strong>, quero gerar insights e exportar dados, para
+        apresentações gerenciais. A exportação anonimizada é obrigatória — nenhum rastro individual é
+        incluído — e cada exportação é registrada em log com o identificador do analista, a data e a
+        hora.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Solicitar Exportação</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Formato de exportação</legend>
+          <p>
+            <input type="radio" id="formato-csv-exp" name="formato-exp" value="csv" checked>
+            <label for="formato-csv-exp">CSV</label>
+          </p>
+          <p>
+            <input type="radio" id="formato-xlsx-exp" name="formato-exp" value="xlsx">
+            <label for="formato-xlsx-exp">XLSX (Excel / Power BI)</label>
+          </p>
+        </fieldset>
+
+        <p>
+          <input type="checkbox" id="confirmar-anonimizacao" name="confirmar-anonimizacao" value="sim" required>
+          <label for="confirmar-anonimizacao">Confirmo que a exportação seguirá a rotina obrigatória de anonimização</label>
+        </p>
+
+        <p>
+          <button type="submit">Exportar dados</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="log-titulo">
+      <h3 id="log-titulo">Histórico de exportações</h3>
+      <table>
+        <caption>Registro de exportações realizadas (log de segurança)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Data/Hora</th>
+            <th scope="col">Analista</th>
+            <th scope="col">Formato</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>10/09/2026 14:32</td><td>ana.silva</td><td>CSV</td></tr>
+          <tr><td>08/09/2026 09:15</td><td>joao.pereira</td><td>XLSX</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Exportação Vazia</h3>
+      <p>
+        Ao tentar exportar uma pesquisa cujos questionários ainda não receberam nenhuma resposta, o
+        download é retido e o sistema notifica: <q>Não há dados para exportar.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

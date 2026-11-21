@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resolver Erros e Falhas | Sistema de Gestão de Pesquisas</title>
+  <meta name="description" content="Formulário de abertura de chamado técnico e acompanhamento de SLA.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <header>
+    <p>Centro Estadual de Educação Tecnológica Paula Souza — Fatec Lins</p>
+    <h1>Sistema de Gestão de Pesquisas por Questionários</h1>
+  </header>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../login.html">Login</a></li>
+      <li><a href="../main.html">Painel do Sistema</a></li>
+    </ul>
+  </nav>
+
+  <nav aria-label="Navegação estrutural (breadcrumb)">
+    <ol>
+      <li><a href="../main.html">Painel</a></li>
+      <li><a href="../main.html">Suporte Técnico</a></li>
+      <li aria-current="page">Resolver Erros e Falhas</li>
+    </ol>
+  </nav>
+
+  <main id="conteudo-principal">
+    <h2>Resolver Erros e Falhas <small>(US-SUP-02)</small></h2>
+
+    <section aria-labelledby="descricao-titulo">
+      <h3 id="descricao-titulo">Sobre esta funcionalidade</h3>
+      <p>
+        Como <strong>Suporte Técnico</strong>, quero resolver erros reportados pelos usuários, para
+        restaurar a operação rapidamente. Todo atendimento gera um ticket com SLA definido: até 4
+        horas para severidade crítica e até 24 horas para severidade média.
+      </p>
+    </section>
+
+    <section aria-labelledby="form-titulo">
+      <h3 id="form-titulo">Abrir Novo Chamado</h3>
+      <form action="#" method="post" novalidate>
+        <fieldset>
+          <legend>Dados do chamado</legend>
+
+          <p>
+            <label for="componente">Componente afetado</label><br>
+            <input type="text" id="componente" name="componente" required placeholder="Ex.: Serviço de Relatórios">
+          </p>
+
+          <p>
+            <label for="severidade">Severidade</label><br>
+            <select id="severidade" name="severidade" required>
+              <option value="" selected disabled>Selecione a severidade</option>
+              <option value="critica">Crítica (SLA 4h)</option>
+              <option value="media">Média (SLA 24h)</option>
+              <option value="baixa">Baixa</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="descricao-chamado">Descrição da falha</label><br>
+            <textarea
+              id="descricao-chamado"
+              name="descricao-chamado"
+              rows="4"
+              cols="50"
+              required
+              maxlength="1000"></textarea>
+          </p>
+
+          <p>
+            <label for="contato-tecnico">E-mail para retorno</label><br>
+            <input type="email" id="contato-tecnico" name="contato-tecnico" required autocomplete="email">
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Registrar chamado</button>
+        </p>
+      </form>
+    </section>
+
+    <section aria-labelledby="chamados-titulo">
+      <h3 id="chamados-titulo">Chamados em andamento</h3>
+      <table>
+        <caption>Chamados técnicos abertos e seus prazos de atendimento (SLA)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Ticket</th>
+            <th scope="col">Componente</th>
+            <th scope="col">Severidade</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>#4521</td><td>Serviço de Relatórios</td><td>Média</td><td>Em atendimento</td></tr>
+          <tr><td>#4519</td><td>API de Pesquisas</td><td>Crítica</td><td>Resolvido</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="alt-titulo">
+      <h3 id="alt-titulo">Fluxo Alternativo — Chamado Duplicado</h3>
+      <p>
+        Se já existir um ticket idêntico aberto para o mesmo erro/componente, a duplicação é
+        bloqueada e o sistema exibe: <q>Já existe chamado aberto para este erro.</q>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fatec Lins — Projeto Integrador I — Lins-SP, 2026</p>
+    <p><a href="../main.html">← Voltar ao Painel Principal</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" role="img" aria-labelledby="bannerTitle bannerDesc">
+  <title id="bannerTitle">Banner do Sistema de Gestão de Pesquisas por Questionários</title>
+  <desc id="bannerDesc">Ilustração de um formulário com marcações de múltipla escolha ao lado de um gráfico de barras crescente, representando coleta e análise de respostas.</desc>
+  <rect x="0" y="0" width="800" height="260" fill="#2f4b7c"/>
+  <rect x="40" y="40" width="330" height="180" rx="10" fill="#ffffff"/>
+  <rect x="65" y="65" width="200" height="14" fill="#2f4b7c"/>
+  <circle cx="70" cy="110" r="9" fill="none" stroke="#2f4b7c" stroke-width="3"/>
+  <circle cx="70" cy="110" r="4" fill="#2f4b7c"/>
+  <rect x="90" y="103" width="220" height="14" fill="#9aa5b1"/>
+  <circle cx="70" cy="145" r="9" fill="none" stroke="#2f4b7c" stroke-width="3"/>
+  <rect x="90" y="138" width="220" height="14" fill="#9aa5b1"/>
+  <circle cx="70" cy="180" r="9" fill="none" stroke="#2f4b7c" stroke-width="3"/>
+  <circle cx="70" cy="180" r="4" fill="#2f4b7c"/>
+  <rect x="90" y="173" width="220" height="14" fill="#9aa5b1"/>
+  <g transform="translate(430,40)">
+    <rect x="0" y="0" width="330" height="180" rx="10" fill="#ffffff"/>
+    <line x1="30" y1="20" x2="30" y2="150" stroke="#2f4b7c" stroke-width="2"/>
+    <line x1="30" y1="150" x2="310" y2="150" stroke="#2f4b7c" stroke-width="2"/>
+    <rect x="55" y="100" width="30" height="50" fill="#ffa600"/>
+    <rect x="110" y="80" width="30" height="70" fill="#ff7c43"/>
+    <rect x="165" y="55" width="30" height="95" fill="#f95d6a"/>
+    <rect x="220" y="30" width="30" height="120" fill="#d45087"/>
+  </g>
+</svg>
