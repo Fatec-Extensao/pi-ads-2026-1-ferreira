@@ -503,6 +503,32 @@ button[type="reset"]:hover {
     border-color: #999999;
 }
 
+/* Validação e Navegação do Questionário */
+#progresso-questionario {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.navegacao-questoes {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.mensagem-erro {
+  display: block;
+  color: #c62828;
+  font-size: 0.875rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+.campo-invalido {
+  border: 2px solid #c62828 !important;
+  outline: none;
+}
 
 /* ---------- Rodapé ---------- */
 
@@ -546,8 +572,6 @@ footer a:hover {
     color: #ff8a8a;
     text-decoration: underline;
 }
-
-
 /* ---------- Celular ---------- */
 
 @media (max-width: 700px) {
