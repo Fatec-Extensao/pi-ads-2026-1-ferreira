@@ -175,7 +175,7 @@
 
 ### 4.1 Administrador
 
-![Diagrama de casos de uso — Administrador](diagramas-caso-de-uso/uc-01-administrador.png)
+![Diagrama de casos de uso — Administrador](modelagem-uml/diagramas-caso-de-uso/uc-01-administrador.png)
 
 #### UC-ADM-01 — Cadastrar Nova Pesquisa
 
@@ -441,7 +441,7 @@
 
 ### 4.2 Participante
 
-![Diagrama de casos de uso — Participante](diagramas-caso-de-uso/uc-02-participante.png)
+![Diagrama de casos de uso — Participante](modelagem-uml/diagramas-caso-de-uso/uc-02-participante.png)
 
 #### UC-PAR-01 — Acessar Pesquisa com Senha
 
@@ -522,7 +522,7 @@
 
 ### 4.3 Secretaria
 
-![Diagrama de casos de uso — Secretaria](diagramas-caso-de-uso/uc-03-secretaria.png)
+![Diagrama de casos de uso — Secretaria](modelagem-uml/diagramas-caso-de-uso/uc-03-secretaria.png)
 
 #### UC-SEC-01 — Aprovar Pesquisa antes da Aplicação
 
@@ -599,7 +599,7 @@
 
 ### 4.4 Analista de Dados
 
-![Diagrama de casos de uso — Analista de Dados](diagramas-caso-de-uso/uc-04-analista-de-dados.png)
+![Diagrama de casos de uso — Analista de Dados](modelagem-uml/diagramas-caso-de-uso/uc-04-analista-de-dados.png)
 
 #### UC-ANA-01 — Analisar Resultados Detalhados
 
@@ -669,7 +669,7 @@
 
 ### 4.5 Suporte Técnico
 
-![Diagrama de casos de uso — Suporte Técnico](diagramas-caso-de-uso/uc-05-suporte-tecnico.png)
+![Diagrama de casos de uso — Suporte Técnico](modelagem-uml/diagramas-caso-de-uso/uc-05-suporte-tecnico.png)
 
 #### UC-SUP-01 — Manter Sistema em Operação
 
@@ -740,7 +740,7 @@
 
 ### 4.6 Auditor
 
-![Diagrama de casos de uso — Auditor](diagramas-caso-de-uso/uc-06-auditor.png)
+![Diagrama de casos de uso — Auditor](modelagem-uml/diagramas-caso-de-uso/uc-06-auditor.png)
 
 #### UC-AUD-01 — Auditar os Dados Coletados
 

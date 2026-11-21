@@ -53,7 +53,7 @@
 
 ## UC-PAR-01 — Acessar Pesquisa com Senha
 
-![UC-PAR-01 Acessar Pesquisa com Senha](diagramas-de-sequencia/seq-par-01.png)
+![UC-PAR-01 Acessar Pesquisa com Senha](modelagem-uml/diagramas-de-sequencia/seq-par-01.png)
 
 | Item | Descrição |
 |---|---|
@@ -89,7 +89,7 @@
 
 ## UC-PAR-02 — Responder Questionário
 
-![UC-PAR-02 Responder Questionário](diagramas-de-sequencia/seq-par-02.png)
+![UC-PAR-02 Responder Questionário](modelagem-uml/diagramas-de-sequencia/seq-par-02.png)
 
 | Item | Descrição |
 |---|---|
@@ -128,7 +128,7 @@
 
 ## UC-ADM-01 — Cadastrar Nova Pesquisa
 
-![UC-ADM-01 Cadastrar Nova Pesquisa](diagramas-de-sequencia/seq-adm-01.png)
+![UC-ADM-01 Cadastrar Nova Pesquisa](modelagem-uml/diagramas-de-sequencia/seq-adm-01.png)
 
 | Item | Descrição |
 |---|---|
@@ -168,7 +168,7 @@
 
 ## UC-ADM-02 — Cadastrar Categorias de Participantes
 
-![UC-ADM-02 Cadastrar Categorias de Participantes](diagramas-de-sequencia/seq-adm-02.png)
+![UC-ADM-02 Cadastrar Categorias de Participantes](modelagem-uml/diagramas-de-sequencia/seq-adm-02.png)
 
 | Item | Descrição |
 |---|---|
@@ -198,7 +198,7 @@
 
 ## UC-ADM-03 — Criar Questionário por Categoria
 
-![UC-ADM-03 Criar Questionário por Categoria](diagramas-de-sequencia/seq-adm-03.png)
+![UC-ADM-03 Criar Questionário por Categoria](modelagem-uml/diagramas-de-sequencia/seq-adm-03.png)
 
 | Item | Descrição |
 |---|---|
@@ -229,7 +229,7 @@
 
 ## UC-ADM-04 — Gerar Lote de Senhas Anônimas
 
-![UC-ADM-04 Gerar Lote de Senhas Anônimas](diagramas-de-sequencia/seq-adm-04.png)
+![UC-ADM-04 Gerar Lote de Senhas Anônimas](modelagem-uml/diagramas-de-sequencia/seq-adm-04.png)
 
 | Item | Descrição |
 |---|---|
@@ -262,7 +262,7 @@
 
 ## UC-ADM-05 — Gerar Relatório de Resultados
 
-![UC-ADM-05 Gerar Relatório de Resultados](diagramas-de-sequencia/seq-adm-05.png)
+![UC-ADM-05 Gerar Relatório de Resultados](modelagem-uml/diagramas-de-sequencia/seq-adm-05.png)
 
 | Item | Descrição |
 |---|---|
@@ -291,7 +291,7 @@
 
 ## UC-ADM-06 — Gerenciar Usuários e Perfis
 
-![UC-ADM-06 Gerenciar Usuários e Perfis](diagramas-de-sequencia/seq-adm-06.png)
+![UC-ADM-06 Gerenciar Usuários e Perfis](modelagem-uml/diagramas-de-sequencia/seq-adm-06.png)
 
 | Item | Descrição |
 |---|---|
@@ -327,7 +327,7 @@
 
 ## UC-ADM-07 — Monitorar Participação (Dashboard)
 
-![UC-ADM-07 Monitorar Participação (Dashboard)](diagramas-de-sequencia/seq-adm-07.png)
+![UC-ADM-07 Monitorar Participação (Dashboard)](modelagem-uml/diagramas-de-sequencia/seq-adm-07.png)
 
 | Item | Descrição |
 |---|---|
@@ -357,7 +357,7 @@
 
 ## UC-SEC-01 — Aprovar Pesquisa antes da Aplicação
 
-![UC-SEC-01 Aprovar Pesquisa antes da Aplicação](diagramas-de-sequencia/seq-sec-01.png)
+![UC-SEC-01 Aprovar Pesquisa antes da Aplicação](modelagem-uml/diagramas-de-sequencia/seq-sec-01.png)
 
 | Item | Descrição |
 |---|---|
@@ -393,7 +393,7 @@
 
 ## UC-SEC-02 — Analisar Relatórios Institucionais
 
-![UC-SEC-02 Analisar Relatórios Institucionais](diagramas-de-sequencia/seq-sec-02.png)
+![UC-SEC-02 Analisar Relatórios Institucionais](modelagem-uml/diagramas-de-sequencia/seq-sec-02.png)
 
 | Item | Descrição |
 |---|---|
@@ -424,7 +424,7 @@
 
 ## UC-ANA-01 — Analisar Resultados Detalhados
 
-![UC-ANA-01 Analisar Resultados Detalhados](diagramas-de-sequencia/seq-ana-01.png)
+![UC-ANA-01 Analisar Resultados Detalhados](modelagem-uml/diagramas-de-sequencia/seq-ana-01.png)
 
 | Item | Descrição |
 |---|---|
@@ -452,7 +452,7 @@
 
 ## UC-ANA-02 — Gerar Insights e Exportar Dados
 
-![UC-ANA-02 Gerar Insights e Exportar Dados](diagramas-de-sequencia/seq-ana-02.png)
+![UC-ANA-02 Gerar Insights e Exportar Dados](modelagem-uml/diagramas-de-sequencia/seq-ana-02.png)
 
 | Item | Descrição |
 |---|---|
@@ -483,7 +483,7 @@
 
 ## UC-AUD-01 — Auditar os Dados Coletados
 
-![UC-AUD-01 Auditar os Dados Coletados](diagramas-de-sequencia/seq-aud-01.png)
+![UC-AUD-01 Auditar os Dados Coletados](modelagem-uml/diagramas-de-sequencia/seq-aud-01.png)
 
 | Item | Descrição |
 |---|---|
@@ -512,7 +512,7 @@
 
 ## UC-AUD-02 — Verificar Segurança e Conformidade
 
-![UC-AUD-02 Verificar Segurança e Conformidade](diagramas-de-sequencia/seq-aud-02.png)
+![UC-AUD-02 Verificar Segurança e Conformidade](modelagem-uml/diagramas-de-sequencia/seq-aud-02.png)
 
 | Item | Descrição |
 |---|---|
@@ -543,7 +543,7 @@
 
 ## UC-SUP-01 — Manter Sistema em Operação
 
-![UC-SUP-01 Manter Sistema em Operação](diagramas-de-sequencia/seq-sup-01.png)
+![UC-SUP-01 Manter Sistema em Operação](modelagem-uml/diagramas-de-sequencia/seq-sup-01.png)
 
 | Item | Descrição |
 |---|---|
@@ -573,7 +573,7 @@
 
 ## UC-SUP-02 — Resolver Erros e Falhas
 
-![UC-SUP-02 Resolver Erros e Falhas](diagramas-de-sequencia/seq-sup-02.png)
+![UC-SUP-02 Resolver Erros e Falhas](modelagem-uml/diagramas-de-sequencia/seq-sup-02.png)
 
 | Item | Descrição |
 |---|---|
