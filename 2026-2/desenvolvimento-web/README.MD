@@ -1,5 +1,7 @@
 # 🌐 Desenvolvimento Web
 
+🔗 **Acesse a aplicação online:** [https://aquamarine-strudel-b32d04.netlify.app/main](https://aquamarine-strudel-b32d04.netlify.app/main)
+
 **Disciplina:** Desenvolvimento Web  
 **Professor:** Prof. Anderson Pazin  
 
