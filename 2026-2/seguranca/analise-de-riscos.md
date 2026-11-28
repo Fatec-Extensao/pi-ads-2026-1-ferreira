@@ -1,6 +1,6 @@
 # Análise de Riscos — Sistema Web para Gestão de Pesquisas por Questionários
 
-> Projeto Integrador I · ADS · Fatec Lins · 2026
+> Projeto Integrador · ADS · Fatec Lins · 2026
 > Versão 1.0 · novembro/2026
 
 ---
@@ -91,7 +91,7 @@ O nível de cada risco é calculado por **Probabilidade (P) × Impacto (I)**, em
 
 ### 3.2 Fronteiras de confiança
 
-```
+```text
  Internet ──► [ Participante anônimo ]   (sem conta; só senha; público e mais exposto)
  Internet ──► [ Usuários internos ]      (login: Administrador, Secretaria, Analista, Suporte, Auditor)
                       │
@@ -578,3 +578,5 @@ Os itens da prioridade 1 também são **requisitos de aceite**: o sistema não d
 - **Lei Geral de Proteção de Dados (Lei nº 13.709/2018)** — princípios de finalidade, necessidade e segurança (art. 6º e art. 46).
 - **ISO/IEC 27005** — gestão de riscos de segurança da informação (escala qualitativa de probabilidade e impacto).
 - Documentos do projeto: *requisitos-e-casos-de-uso* (RF, RNF e UC), diagramas de classes, de sequência e de atividades, MER, modelo físico e `script_banco_gestao_pesquisas.sql`.
+analise-de-riscos.md
+Exibindo analise-de-riscos.md…

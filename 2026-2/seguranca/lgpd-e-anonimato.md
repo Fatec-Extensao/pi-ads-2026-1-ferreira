@@ -1,6 +1,6 @@
 # Conformidade com a LGPD e Garantia de Anonimato — Sistema Web para Gestão de Pesquisas por Questionários
 
-> Projeto Integrador I · ADS · Fatec Lins · 2026
+> Projeto Integrador · ADS · Fatec Lins · 2026
 > Versão 1.0 · novembro/2026
 
 ---
@@ -55,7 +55,7 @@ Para garantir que o sistema não colete Dados Pessoais Identificáveis (PII) dos
 ### 3.2 Supressão de metadados e rastreadores
 - **Bloqueio de registro de IP e *User-Agent*:** A aplicação não coleta, não processa e não armazena endereço IP, geolocalização, impressão digital de navegador (*fingerprinting*) ou cookies de rastreamento nas rotas públicas de acesso e resposta (RNF12).
 - **Logs do servidor web:** Nas rotas `/acessar-pesquisa` e `/responder-questionario`, o servidor HTTP/proxy reverso deve omitir ou anonimizar o endereço IP nos logs de acesso.
-- **Redução da granularidade temporal:** A coluna `tokens_anonimos.utilizado_em` armazena exclusivamente a **data** (`DATE`), sem hora, minuto ou segundo. Da mesma forma, `submissoes.criado_em` deve ter sua precisão reduzida (ex.: apenas data ou janela de turno), impedindo o cruzamento de horários entre o uso da senha e o envio da resposta.
+- **Descasamento da granularidade temporal:** A coluna `tokens_anonimos.utilizado_em` armazena exclusivamente a **data** (`DATE`), sem hora, minuto ou segundo, impossibilitando o cruzamento temporal direto com `submissoes.criado_em` (`DATETIME`). Como evolução opcional na camada de aplicação, recomenda-se truncar ou arredondar o timestamp de submissão para janelas de turno/dia.
 - **Rascunho exclusivamente local:** O salvamento automático de rascunho durante o preenchimento (RF19) utiliza apenas o armazenamento local do navegador do participante (`localStorage` / `sessionStorage`), sem tráfego de dados parciais para o servidor.
 
 ### 3.3 Proteção contra re-identificação nos relatórios e respostas abertas
@@ -146,3 +146,5 @@ O texto abaixo deve ser apresentado ao respondente na tela inicial da pesquisa (
 - **ISO/IEC 27701** — *Gestão da Privacidade da Informação* (extensão da ISO/IEC 27001 e 27002).
 - **OWASP Top 10 Privacy Risks** — boas práticas de minimização e proteção de dados em aplicações web.
 - Artefatos do projeto: *Requisitos e Casos de Uso* (`RF01–RF21`, `RNF01–RNF44`), `script_banco_gestao_pesquisas.sql` e `analise-de-riscos.md`.
+conformidade-lgpd.md
+Exibindo conformidade-lgpd.md…

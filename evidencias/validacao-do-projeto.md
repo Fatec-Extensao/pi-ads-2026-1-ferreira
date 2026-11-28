@@ -1,9 +1,9 @@
 # Validação do Projeto — Sistema Web para Gestão de Pesquisas por Questionários
 
 > **Instituição:** Fatec Lins — Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas (ADS)  
-> **Disciplina:** Projeto Integrador I · 2026  
+> **Disciplina:** Projeto Integrador · 2026  
 > **Equipe:** Anderson Clayton Pereira de Assis · Eduardo Matias Ferreira · Lucas Augusto Vieira Tridapali · Vitor Hugo Dias Mantovani · Neandro Bueno Vieira  
-> **Versão do Documento:** 1.0 · Status: **Validado para Entrega**
+> **Versão do Documento:** 1.1 · Status: **Validado para Entrega**
 
 ---
 
@@ -13,8 +13,8 @@ Este documento registra a verificação cruzada e a validação técnica entre t
 
 1. **Engenharia de Software:** Requisitos Funcionais (RF), Requisitos Não Funcionais (RNF), Casos de Uso (UC), Matriz de Rastreabilidade, Diagramas de Atividades, Diagrama de Classes e Diagramas de Sequência.
 2. **Banco de Dados:** Modelo Entidade-Relacionamento (MER), Modelo Físico e Script SQL (`MySQL 8.0.16+` / `MariaDB 10.5+`).
-3. **Design e Prototipação (UI/UX):** Wireframes funcionais de fluxo.
-4. **Segurança e Conformidade:** Regras de anonimato, controle de acesso, triggers de imutabilidade e mitigação de riscos.
+3. **Compliance e Segurança da Informação:** Análise de Riscos (`analise-de-riscos.md`) e Diretrizes de Conformidade LGPD e Anonimato (`conformidade-lgpd.md`).
+4. **Design e Prototipação (UI/UX):** Wireframes funcionais de fluxo.
 
 ---
 
@@ -31,6 +31,7 @@ Este documento registra a verificação cruzada e a validação técnica entre t
 | **Modelagem UML** | Diagrama de Classes + Serviços + Enumerações | 21 classes · 2 serviços · 3 enums | ✔ Validado |
 | **Banco de Dados** | Entidades / Tabelas Físicas | 14 | ✔ Validado |
 | **Banco de Dados** | Triggers de Integridade e Imutabilidade | 4 | ✔ Validado |
+| **Segurança e LGPD** | Riscos Mapeados e Mitigados (`R01`–`R27`) | 27 | ✔ Validado |
 | **Prototipação** | Telas de Wireframes | 18 | ✔ Validado |
 
 ---
@@ -67,40 +68,42 @@ Todos os 21 requisitos funcionais possuem cobertura ponta a ponta, desde a inter
 
 ---
 
-## 4. Validação Arquitetural e de Segurança (LGPD)
+## 4. Validação Arquitetural, Segurança e LGPD
 
-### 4.1 Garantia Estrutural de Anonimato (`RNF10`–`RNF15`)
-* **Dissociação física no banco:** Validado no MER e no Script SQL que **não existe chave estrangeira ou qualquer relação** entre `tokens_anonimos` e `submissoes` / `respostas`.
+### 4.1 Garantia Estrutural de Anonimato (`RNF10`–`RNF15` · Art. 12 LGPD)
+* **Dissociação física no banco:** Validado no MER, no Script SQL e em `conformidade-lgpd.md` que **não existe chave estrangeira ou qualquer relação** entre `tokens_anonimos` e `submissoes` / `respostas`.
 * **Granularidade temporal reduzida:** O campo `tokens_anonimos.utilizado_em` utiliza o tipo `DATE` (apenas data, sem hora/minuto/segundo), impossibilitando o cruzamento temporal com `submissoes.criado_em` (`DATETIME`).
-* **Ausência de metadados rastreáveis:** Respostas são gravadas sem endereço IP, cookies de rastreamento ou identificadores pessoais (`RNF11`, `RNF12`). O controle de brute-force (3 tentativas em 15 minutos, `RNF43`) ocorre exclusivamente em memória (cache).
+* **Ausência de metadados rastreáveis e *k-anonimato*:** Respostas são gravadas sem IP, cookies ou identificadores pessoais (`RNF11`, `RNF12`). O controle de força bruta (3 tentativas em 15 minutos, `RNF43`) ocorre exclusivamente em memória (cache), e relatórios aplicam tamanho mínimo de grupo (mínimo de 5 respondentes) para evitar re-identificação por inferência (`R09`).
+* **Transparência e retenção:** Modelo de Aviso de Privacidade/TCLE validado antes do início do questionário e ciclos de retenção/expurgo definidos por tabela (Art. 15 e 16 da LGPD).
 
 ### 4.2 Integridade Garantida pelo Banco de Dados (`RNF24`, `RNF29`)
 * **Restrições Referenciais:** Todas as chaves estrangeiras utilizam `ON DELETE RESTRICT ON UPDATE RESTRICT`, impedindo exclusão acidental de pesquisas, questões ou históricos em uso.
 * **Chave Estrangeira Composta:** A tabela `respostas` referencia `alternativas(id, questao_id)`, garantindo no próprio SGBD que uma alternativa escolhida pertence obrigatoriamente à questão respondida.
 * **Triggers Ativas:**
-  * `trg_logs_bloqueia_update` e `trg_logs_bloqueia_delete`: garantem o padrão WORM (*Write Once, Read Many*) em `logs_auditoria`.
-  * `trg_tokens_uma_utilizacao`: impede reuso de senha e alteração retroativa de `token_hash` ou `lote_id`.
-  * `trg_respostas_mesma_categoria`: valida no `BEFORE INSERT` que a questão respondida pertence à mesma categoria da submissão.
+  * `trg_logs_bloqueia_update` e `trg_logs_bloqueia_delete`: garantem o padrão WORM (*Write Once, Read Many*) em `logs_auditoria` (mitigando `R21`).
+  * `trg_tokens_uma_utilizacao`: impede reuso de senha e alteração retroativa de `token_hash` ou `lote_id` (mitigando `R13` e `R14`).
+  * `trg_respostas_mesma_categoria`: valida no `BEFORE INSERT` que a questão respondida pertence à mesma categoria da submissão (mitigando `R18` e `R22`).
 
-### 4.3 Criptografia e Controle de Acesso (`RNF32`–`RNF44`)
-* **Senhas anônimas:** Armazenadas exclusivamente como hash `SHA-256` (`VARCHAR(64)`).
-* **Usuários internos:** Credenciais protegidas via `BCrypt` ou `Argon2` (`VARCHAR(255)`), com revogação imediata de acesso via flag `usuarios.ativo = FALSE`.
+### 4.3 Análise de Riscos e Controles de Acesso (`RNF32`–`RNF44`)
+* **Cobertura OWASP Top 10 e ISO/IEC 27005:** Todos os 27 riscos mapeados em `analise-de-riscos.md` (2 críticos iniciais, 16 altos, 8 moderados e 1 baixo) possuem plano de mitigação rastreado aos requisitos e controles do banco/aplicação.
+* **Criptografia:** Senhas anônimas armazenadas exclusivamente como hash `SHA-256` (`VARCHAR(64)`); credenciais de usuários internos protegidas via `BCrypt` ou `Argon2` (`VARCHAR(255)`), com revogação imediata de acesso via `usuarios.ativo = FALSE` e plano de ação priorizado para MFA (`R19`), escape contra XSS (`R02`) e consultas parametrizadas (`R01`).
 
 ---
 
-## 5. Registro de Alinhamento Entre Diagramas e Banco (Pontos de Atenção)
+## 5. Registro de Alinhamento Entre Diagramas, Segurança e Banco
 
-Durante a revisão cruzada entre o **Diagrama de Classes**, os **Diagramas de Sequência** e o **Script SQL**, foram mapeados pontos de refinamento documental para manter 100% de consistência semântica na entrega final:
+Durante a revisão cruzada entre o **Diagrama de Classes**, os **Diagramas de Sequência**, os **Documentos de Segurança** e o **Script SQL**, foram mapeados pontos de refinamento documental para manter 100% de consistência semântica na entrega final:
 
-| # | Escopo | Divergência Identificada | Resolução / Diretriz Adotada |
+| # | Escopo | Divergência / Ponto Identificado | Resolução / Diretriz Adotada |
 | :---: | :--- | :--- | :--- |
-| **01** | `UC-PAR-02` (Sequência) | Criação do objeto `Submissao` antes de `validarObrigatorias()`. | Instanciar e persistir `Submissao` somente **dentro da transação atômica**, após validação bem-sucedida. |
+| **01** | `UC-PAR-02` (Sequência) | Criação do objeto `Submissao` antes de `validarObrigatorias()`. | Instanciar e persistir `Submissao` somente **dentro da transação atômica**, após validação bem-sucedida (`R13`, `R25`). |
 | **02** | `Chamado` (Classes × Banco) | Banco possui `status`, `aberto_em`, `fechado_em` e `aberto_por`; classe omitia os métodos `existeDuplicado()`, `abrir()` e `fechar()`. | Sincronizar atributos e métodos na classe `Chamado` conforme o modelo físico e `seq-sup-02`. |
-| **03** | `TokenAnonimo` (Classes × Banco) | Atributo `utilizadoEm` tipado como `LocalDateTime` na classe, mas `DATE` no banco. | Ajustar tipo na classe para `LocalDate`, preservando o requisito de anonimato (`RNF10`). |
+| **03** | `TokenAnonimo` (Classes × Banco) | Atributo `utilizadoEm` tipado como `LocalDateTime` na classe, mas `DATE` no banco. | Ajustar tipo na classe para `LocalDate`, preservando o requisito de anonimato (`RNF10`, `R09`). |
 | **04** | `RelatorioService` (Classes) | Assinatura `compararCategoria(p)` vs `compararCategorias(p)` na sequência, e visibilidade privada (`-`) em `porPergunta`. | Padronizar para `+ compararCategorias(p : Pesquisa)` e `+ porPergunta(p : Pesquisa)`. |
 | **05** | Assinaturas de Métodos | Tipagens genéricas/incompletas em `Administrador` (`ListQuestoes`, `p : int`) e `AnalistaDeDados` (`formato : int`). | Padronizar assinaturas para `List<Questao>`, `Pesquisa` e `formato : String`. |
 | **06** | Notificações de Grupo | Tabela `notificacoes` aponta para um `usuario_id` individual, enquanto fluxos citam "Secretaria" ou "Plantão". | A camada de aplicação itera sobre os usuários ativos do perfil alvo e gera uma notificação individual por destinatário. |
-| **07** | Regras de Negócio na Aplicação | Limite de 50 questões (`UC-ADM-03`), motivo de reprovação ≥ 10 caracteres (`UC-SEC-01`) e SLA de chamados (4h/24h). | Mantidos na camada de serviço/aplicação (regras dinâmicas), enquanto restrições estruturais ficam no SGBD. |
+| **07** | Granularidade Temporal (`conformidade-lgpd.md`) | Menção à redução de precisão em `submissoes.criado_em`, enquanto o SQL define o campo como `DATETIME`. | Alinhar texto ao SQL (`tokens_anonimos.utilizado_em` em `DATE` já quebra o pareamento temporal) e registrar truncamento de `submissoes` como melhoria opcional. |
+| **08** | Regras de Negócio na Aplicação | Limite de 50 questões (`UC-ADM-03`), motivo de reprovação ≥ 10 caracteres (`UC-SEC-01`), SLA (4h/24h) e separação `criado_por != aprovado_por` (`R20`). | Mantidos na camada de serviço/aplicação (regras dinâmicas), enquanto restrições estruturais ficam no SGBD. |
 
 ---
 
@@ -108,7 +111,8 @@ Durante a revisão cruzada entre o **Diagrama de Classes**, os **Diagramas de Se
 
 - [x] **Coerência de Modelo:** Todas as 14 tabelas do MER correspondem diretamente às entidades persistentes do Diagrama de Classes.
 - [x] **Rastreabilidade Completa:** Nenhum caso de uso órfão; todos os 21 RFs estão mapeados na Matriz de Rastreabilidade.
-- [x] **Segurança e LGPD:** Impossibilidade técnica de vincular um participante às suas respostas validada no banco e nos fluxos.
+- [x] **Segurança e LGPD:** Impossibilidade técnica de vincular um participante às suas respostas validada no banco, nos fluxos e no TCLE.
+- [x] **Gestão de Riscos:** Matriz de 27 riscos (`R01`–`R27`) revisada, com controles do SQL mapeados e plano de ação priorizado definido.
 - [x] **Atomicidade:** Geração de lotes/tokens (`UC-ADM-04`) e envio de respostas/baixa de token (`UC-PAR-02`) projetados em transações atômicas.
 - [x] **Auditoria:** Operações críticas de escrita e exportação registradas em `logs_auditoria` com proteção contra `UPDATE` e `DELETE`.
 
@@ -116,12 +120,14 @@ Durante a revisão cruzada entre o **Diagrama de Classes**, os **Diagramas de Se
 
 ## 7. Termo de Validação da Equipe
 
-Os integrantes abaixo atestam que os artefatos de Engenharia de Software, Banco de Dados, Prototipação e Segurança foram revisados em conjunto e encontram-se íntegros e prontos para a etapa de implementação e apresentação do **Projeto Integrador I (Fatec Lins · 2026)**:
+Os integrantes abaixo atestam que os artefatos de Engenharia de Software, Banco de Dados, Prototipação e Segurança foram revisados em conjunto e encontram-se íntegros e prontos para a etapa de implementação e apresentação do **Projeto Integrador (Fatec Lins · 2026)**:
 
 | Integrante | Papel / Contribuição Validada | Status |
 | :--- | :--- | :---: |
 | **Anderson Clayton Pereira de Assis** | Engenharia de Requisitos, Modelagem UML e Arquitetura | ✔ Aprovado |
 | **Eduardo Matias Ferreira** | Banco de Dados (MER, Modelo Físico, SQL e Triggers) | ✔ Aprovado |
 | **Lucas Augusto Vieira Tridapali** | Diagramas de Sequência, Classes e Regras de Negócio | ✔ Aprovado |
-| **Vitor Hugo Dias Mantovani** | Segurança da Informação, LGPD e Análise de Riscos | ✔ Aprovado |
+| **Vitor Hugo Dias Mantovani** | Segurança da Informação, Análise de Riscos e LGPD | ✔ Aprovado |
 | **Neandro Bueno Vieira** | Prototipação (Wireframes), UI/UX e Rastreabilidade | ✔ Aprovado |
+validacao-do-projeto.md
+Exibindo validacao-do-projeto.md…

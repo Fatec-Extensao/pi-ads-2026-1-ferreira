@@ -1,128 +1,107 @@
 # Documentação Final — Sistema Web para Gestão de Pesquisas por Questionários
 
-> **Instituição:** Fatec Lins — Prof. Antonio Seabra  
-> **Curso:** Tecnologia em Análise e Desenvolvimento de Sistemas (ADS)  
-> **Disciplina:** Projeto Integrador I · 2026  
+> **Instituição:** Fatec Lins — Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas (ADS)  
+> **Disciplina:** Projeto Integrador · 2026  
 > **Equipe:** Anderson Clayton Pereira de Assis · Eduardo Matias Ferreira · Lucas Augusto Vieira Tridapali · Vitor Hugo Dias Mantovani · Neandro Bueno Vieira
 
 ---
 
 ## 1. Visão Geral do Projeto
 
-### 1.1 Contextualização e Problema
-Instituições de ensino e organizações enfrentam desafios recorrentes ao conduzir pesquisas internas de avaliação e clima: formulários genéricos sem segmentação por público, risco de respostas duplicadas por um mesmo indivíduo e, sobretudo, a desconfiança dos respondentes quanto ao sigilo de suas respostas.
+O **Sistema Web para Gestão de Pesquisas por Questionários** é uma plataforma institucional desenvolvida para **criar, aprovar, aplicar e analisar pesquisas internas com garantia estrutural de anonimato** (conformidade com a LGPD — Lei nº 13.709/2018).
 
-### 1.2 Solução Proposta
-O **Sistema Web para Gestão de Pesquisas por Questionários** resolve esse cenário por meio de uma plataforma institucional que separa rigorosamente a **gestão administrativa** da **coleta anônima de respostas**:
-
-* **Anonimato garantido por arquitetura:** O participante não possui cadastro nem login. O acesso ocorre exclusivamente por uma **senha de uso único (token)** vinculada apenas à categoria do público (ex.: Alunos, Professores, Colaboradores).
-* **Governança e fluxo de aprovação:** Pesquisas passam por revisão formal da Secretaria antes de serem liberadas para geração de senhas e coleta.
-* **Análise agregada e conformidade (LGPD):** Relatórios e dashboards exibem apenas dados consolidados (percentuais e totais), com trilha de auditoria imutável para operações administrativas.
+### Problema e Solução
+* **Problema:** Pesquisas institucionais tradicionais enfrentam baixa adesão por receio de identificação do respondente, além de processos manuais descentralizados e dificuldade na consolidação comparativa entre diferentes públicos.
+* **Solução:** Aplicação web responsiva (*mobile-first* para respondentes) baseada em **senhas anônimas de uso único** geradas por categoria de participante, dissociadas fisicamente das respostas submetidas, com fluxo formal de aprovação institucional e painéis estatísticos agregados.
 
 ---
 
-## 2. Perfis de Acesso (Atores)
+## 2. Atores e Perfis de Acesso
 
-O sistema contempla **6 perfis**, sendo 5 usuários internos autenticados (com controle baseado em perfil/RBAC) e 1 ator externo anônimo:
+O sistema opera com **6 perfis distintos**, regidos pelo princípio do menor privilégio (RBAC) e validação de permissões tanto no frontend quanto no backend (`RNF36`–`RNF40`):
 
-| Perfil | Tipo de Acesso | Responsabilidades Principais |
+| Perfil / Ator | Tipo de Acesso | Responsabilidades Principais |
 | :--- | :--- | :--- |
-| **Administrador** | Login interno | Cadastra pesquisas, categorias e questionários; envia para análise; gera lotes de senhas anônimas; acompanha dashboard e gerencia usuários. |
-| **Participante** | Senha anônima (8 caracteres) | Acessa o questionário da sua categoria e envia respostas de forma única e não rastreável. |
-| **Secretaria** | Login interno | Revisa pesquisas em análise, aprova ou reprova (com justificativa obrigatória) e consulta relatórios institucionais. |
-| **Analista de Dados** | Login interno (leitura) | Aplica filtros avançados, cruza resultados por categoria/pergunta e exporta bases anonimizadas (`CSV` e `XLSX`). |
-| **Suporte Técnico** | Login interno | Monitora a disponibilidade dos serviços (API, banco, servidor) e gerencia chamados técnicos dentro do SLA. |
-| **Auditor** | Login interno (leitura) | Audita logs imutáveis do sistema e emite relatórios de conformidade técnica e adequação à LGPD. |
+| **Administrador** | Autenticado (Login) | Cadastra pesquisas, categorias e questionários; envia pesquisas para análise; gera e exporta lotes de senhas anônimas; monitora participação em tempo real e gerencia usuários internos. |
+| **Participante** | Público (Senha anônima) | Não possui cadastro. Acessa o questionário da sua categoria via senha única de 8 caracteres, salva rascunho localmente no navegador e submete respostas de forma 100% anônima. |
+| **Secretaria** | Autenticado (Login) | Revisa o conteúdo das pesquisas em análise, aprova ou reprova (com justificativa obrigatória de no mínimo 10 caracteres) e analisa relatórios institucionais consolidados. |
+| **Analista de Dados** | Autenticado (Somente leitura) | Realiza cruzamentos avançados por pergunta, categoria e período, gera insights e exporta bases anonimizadas em CSV e XLSX. |
+| **Suporte Técnico** | Autenticado (Operacional) | Monitora a disponibilidade de APIs, banco e servidores (atualização a cada 30s) e gerencia chamados técnicos com controle de SLA (4h crítico / 24h médio). |
+| **Auditor** | Autenticado (Somente leitura) | Inspeciona a trilha de auditoria imutável (`logs_auditoria`) e emite relatórios de conformidade técnica e legal (LGPD). |
 
 ---
 
-## 3. Ciclo de Vida da Pesquisa
+## 3. Ciclo de Vida da Pesquisa (Máquina de Estados)
 
-Toda pesquisa segue uma máquina de estados controlada por regras de negócio no banco de dados e na aplicação:
+Toda pesquisa segue um fluxo controlado de estados validado pela camada de aplicação e por restrições `CHECK` no banco de dados:
 
 ```text
-[RASCUNHO] ──(Enviar p/ análise)──> [EM_ANALISE] ──(Secretaria aprova)──> [APROVADA] ──(Início vigência)──> [ATIVA] ──(Fim vigência)──> [ENCERRADA]
-                                         │
-                                  (Secretaria reprova
-                                   com justificativa)
-                                         ▼
-                                    [REPROVADA] ──(Ajustes pelo Admin)──> [RASCUNHO]
-```
-
-1. **Rascunho:** Administrador cria a pesquisa, define período, cadastra categorias e monta os questionários.
-2. **Em análise:** Envio bloqueado caso não exista ao menos uma categoria com questionário cadastrado. Secretaria é notificada.
-3. **Aprovada / Reprovada:** A Secretaria valida o conteúdo. A aprovação libera a geração de lotes de senhas; a reprovação exige justificativa (mínimo 10 caracteres).
-4. **Ativa:** Pesquisa vigente dentro do intervalo `data_inicio` e `data_fim`, aceitando respostas via tokens válidos.
-5. **Encerrada:** Período finalizado; tokens não utilizados expiram automaticamente e os resultados ficam disponíveis para análise.
-
----
-
-## 4. Arquitetura Técnica e Pilares de Segurança
-
-### 4.1 Banco de Dados (Modelo Físico)
-Projetado para **MySQL 8.0.16+ / MariaDB 10.5+**, composto por **14 tabelas**, restrições de integridade (`PK`, `FK` com `ON DELETE RESTRICT`, `UNIQUE`, `CHECK`) e **4 triggers** nativas:
-
-* **Dissociação entre token e resposta:** Não há chave estrangeira ligando `tokens_anonimos` a `submissoes` ou `respostas`.
-* **Granularidade temporal reduzida:** `tokens_anonimos.utilizado_em` armazena apenas `DATE` (sem hora/minuto/segundo), impedindo correlação temporal com `submissoes.criado_em`.
-* **Integridade referencial composta:** `respostas` utiliza FK composta `(alternativa_id, questao_id)` para garantir que a alternativa escolhida pertença à questão respondida.
-* **Triggers ativas no SGBD:**
-  * `trg_logs_bloqueia_update` e `trg_logs_bloqueia_delete`: asseguram imutabilidade (WORM) em `logs_auditoria`.
-  * `trg_tokens_uma_utilizacao`: impede reutilização de senha ou alteração do hash/lote após o uso.
-  * `trg_respostas_mesma_categoria`: garante no banco que a questão respondida pertence à categoria da submissão.
-
-### 4.2 Segurança da Informação e LGPD
-* **Criptografia e Hash:** Senhas anônimas são exportadas uma única vez no momento da geração do lote e armazenadas apenas como **SHA-256**. Senhas de usuários internos utilizam **BCrypt** ou **Argon2**.
-* **Privacidade na coleta:** Nenhum IP, cookie de sessão ou dado pessoal é gravado nas respostas. O limite de tentativas inválidas (3 tentativas em 15 minutos) é controlado em memória.
-* **Rascunho local:** O progresso do participante é salvo apenas no navegador (`localStorage`), sem tráfego parcial no banco até o envio definitivo.
-
----
-
-## 5. Organização do Repositório e Mapa de Artefatos
-
-A documentação e os códigos do projeto estão organizados em quatro frentes principais:
-
-```text
-├── engenharia-software/
-│   ├── requisitos-e-casos-de-uso.md       # 6 atores, 21 RFs, 44 RNFs, 17 UCs e Matriz de Rastreabilidade
-│   ├── especificacao-classes.md           # 21 classes, 2 serviços, 3 enumerações e mapeamento ORM
-│   ├── especificacao-sequencia.md         # 17 diagramas de sequência detalhados
-│   ├── wireframes.md                      # 18 telas prototipadas cobrindo todos os perfis
-│   ├── validacao-do-projeto.md            # Relatório de validação cruzada e rastreabilidade
-│   └── modelagem-uml/                     # Arquivos fontes e imagens (.png) dos diagramas
-│
-├── banco-de-dados/
-│   ├── mer-modelo-fisico.md               # Diagrama Mermaid (notação IE), dicionário de dados e triggers
-│   └── script_banco_gestao_pesquisas.sql  # DDL completo, constraints, índices e triggers
-│
-├── seguranca/
-│   └── analise-de-riscos.md               # Matriz de probabilidade x impacto (27 riscos) e mitigações
-│
-└── desenvolvimento-web/
-    └── ...                                # Código-fonte da aplicação web
+[ RASCUNHO ] ──(Enviar p/ análise)──► [ EM_ANALISE ]
+                                           │
+                     ┌─────────────────────┴─────────────────────┐
+                     ▼ (Aprovar)                                 ▼ (Reprovar c/ motivo)
+               [ APROVADA ]                                [ REPROVADA ] ──(Editar)──► [ RASCUNHO ]
+                     │
+        (Início do período + Lotes)
+                     ▼
+                [ ATIVA ] ──(Fim do período)──► [ ENCERRADA ]
 ```
 
 ---
 
-## 6. Guia Rápido de Implantação do Banco de Dados
+## 4. Arquitetura Técnica e Banco de Dados
 
-Para instanciar a estrutura de dados em ambiente local ou de homologação:
+### 4.1 Modelo Físico (`MySQL 8.0.16+` / `MariaDB 10.5+`)
+O banco de dados é composto por **14 tabelas relacionais**, todas protegidas por `ON DELETE RESTRICT ON UPDATE RESTRICT` para impedir exclusão acidental de registros históricos:
 
-1. Certifique-se de utilizar **MariaDB 10.5+** ou **MySQL 8.0.16+** (necessário para suporte pleno às restrições `CHECK`).
-2. Crie o banco de dados com codificação UTF-8 completa:
-   ```sql
-   CREATE DATABASE gestao_pesquisas
-     CHARACTER SET utf8mb4
-     COLLATE utf8mb4_unicode_ci;
-   USE gestao_pesquisas;
-   ```
-3. Execute o script físico localizado em `banco-de-dados/script_banco_gestao_pesquisas.sql` para criar as **14 tabelas**, **4 índices** e **4 triggers**.
-4. Realize a carga inicial dos 5 perfis base na tabela `perfis` (`Administrador`, `Secretaria`, `Analista de Dados`, `Suporte Técnico`, `Auditor`) e do usuário administrador inicial.
+* **Gestão de Usuários:** `perfis`, `usuarios`
+* **Estrutura de Pesquisas:** `pesquisas`, `categorias_participantes`, `questoes`, `alternativas`
+* **Controle de Acesso Anônimo:** `lotes_senhas`, `tokens_anonimos`
+* **Coleta de Dados:** `submissoes`, `respostas`
+* **Governança, Auditoria e Suporte:** `logs_auditoria`, `notificacoes`, `chamados`, `chamados_historico`
+
+### 4.2 Integridade Automatizada no SGBD
+* **Chave Estrangeira Composta:** `respostas(alternativa_id, questao_id)` referencia `alternativas(id, questao_id)`, garantindo no banco que uma alternativa pertence obrigatoriamente à questão respondida.
+* **Triggers Ativas:**
+  1. `trg_logs_bloqueia_update`: Impede alteração em registros de auditoria (`RNF29`).
+  2. `trg_logs_bloqueia_delete`: Impede exclusão de registros de auditoria (`RNF29`).
+  3. `trg_tokens_uma_utilizacao`: Bloqueia reuso de senha anônima e alteração de hash/lote (`RF09`).
+  4. `trg_respostas_mesma_categoria`: Valida que a questão respondida pertence à mesma categoria da submissão.
 
 ---
 
-## 7. Resumo dos Indicadores do Projeto
+## 5. Compliance, Segurança da Informação e LGPD
 
-* **21 Requisitos Funcionais** (`RF01`–`RF21`) e **44 Requisitos Não Funcionais** (`RNF01`–`RNF44`) rastreados.
-* **17 Casos de Uso** acompanhados de **17 Diagramas de Atividades** e **17 Diagramas de Sequência**.
-* **18 Wireframes** cobrindo 100% da jornada dos 6 atores.
-* **27 Riscos de Segurança** mapeados e mitigados conforme diretrizes da LGPD.
+O projeto incorpora controles de **Privacy by Design** e mitigação de riscos alinhados ao **OWASP Top 10** e à **Lei nº 13.709/2018 (LGPD)**:
+
+* **Anonimato Estrutural (`RNF10`–`RNF15`):** Não existe chave estrangeira ou relação entre `tokens_anonimos` e `submissoes`/`respostas`. Além disso, `tokens_anonimos.utilizado_em` grava apenas a data (`DATE`), inviabilizando o pareamento temporal com `submissoes.criado_em` (`DATETIME`).
+* **Zero Rastreamento do Respondente:** Nenhuma resposta armazena IP, cookies ou identificadores pessoais. O controle de tentativas inválidas (máximo 3 em 15 minutos, `RNF43`) ocorre exclusivamente em memória (cache).
+* **K-Anonimato e TCLE:** Relatórios e cruzamentos exigem tamanho mínimo de grupo (5 respondentes) para evitar re-identificação indireta, e o participante aceita o Termo de Consentimento Livre e Esclarecido (TCLE) antes de iniciar.
+* **Criptografia:** Senhas anônimas armazenadas exclusivamente via hash `SHA-256` (texto puro disponível apenas no download único da geração do lote); senhas de usuários internos protegidas com `BCrypt` ou `Argon2`.
+* **Gestão de Riscos:** Matriz completa com **27 riscos mapeados** (`R01`–`R27`), plano de ação priorizado em 4 fases e política formal de retenção e expurgo de dados.
+
+---
+
+## 6. Mapa de Artefatos do Repositório
+
+| Módulo / Pasta | Artefato | Descrição |
+| :--- | :--- | :--- |
+| **`2026-2/engenharia-software/`** | `requisitos.md` | 21 Requisitos Funcionais, 44 Não Funcionais, 17 Casos de Uso e Matriz de Rastreabilidade. |
+| **`2026-2/engenharia-software/`** | `modelagem-uml/classes.md` | Especificação das 21 classes, 2 serviços, 3 enumerações e mapeamento classe → tabela. |
+| **`2026-2/engenharia-software/`** | `modelagem-uml/sequencia.md` | Fluxos de interação detalhados para todos os 17 casos de uso. |
+| **`2026-2/engenharia-software/`** | `wireframes/` | 18 telas prototipadas cobrindo todos os perfis de usuário. |
+| **`2026-2/banco-de-dados/`** | `mer.md` & `script_banco_gestao_pesquisas.sql` | Diagrama ER, dicionário de dados, restrições `CHECK`/`UNIQUE` e 4 *triggers*. |
+| **`2026-2/seguranca/`** | `analise-de-riscos.md` | Identificação, matriz P×I, controles OWASP e plano de mitigação de 27 riscos. |
+| **`2026-2/seguranca/`** | `conformidade-lgpd.md` | Enquadramento legal, *k-anonimato*, política de retenção e modelo de TCLE. |
+| **`evidencias/`** | `apresentacao-projeto.html` | Apresentação visual interativa da solução. |
+| **`evidencias/`** | `validacao-do-projeto.md` | Relatório de validação cruzada e termo de aprovação da equipe. |
+
+---
+
+## 7. Como Implantar o Banco de Dados
+
+1. Certifique-se de utilizar **MySQL 8.0.16+** ou **MariaDB 10.5+** (necessário para suporte completo às restrições `CHECK`).
+2. Execute o arquivo `script_banco_gestao_pesquisas.sql` localizado em `2026-2/banco-de-dados/`.
+3. Verifique a criação das 14 tabelas, dos perfis iniciais na tabela `perfis` e das 4 *triggers* ativas no schema.
+documentacao-final.md
+Exibindo documentacao-final.md…

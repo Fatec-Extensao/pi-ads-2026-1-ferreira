@@ -19,6 +19,10 @@ Sistema que permite a criação, aplicação e análise de pesquisas institucion
 - [Diagramas de Casos de Uso](2026-2/engenharia-software/modelagem-uml/casos-de-uso.md)
 - [Especificação de Fluxos (Diagramas de Atividade)](2026-2/engenharia-software/modelagem-uml/especificacao.md)
 
+### Segurança e Conformidade (`2026-2/seguranca/`)
+- [Análise de Riscos](2026-2/seguranca/analise-de-riscos.md)
+- [Conformidade com a LGPD e Garantia de Anonimato](2026-2/seguranca/conformidade-lgpd.md)
+
 ### Apresentação e Validação (`evidencias/`)
 - [Documentação Final (Índice Executivo)](evidencias/documentacao-final.md)
 - [Validação do Projeto e Rastreabilidade](evidencias/validacao-do-projeto.md)
