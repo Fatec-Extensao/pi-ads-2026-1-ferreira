@@ -11,10 +11,10 @@
 
 Este documento registra a verificação cruzada e a validação técnica entre todos os artefatos produzidos para o **Sistema Web para Gestão de Pesquisas por Questionários**. O objetivo é comprovar a coerência arquitetural, a rastreabilidade integral dos requisitos e a conformidade com as regras de negócio, segurança e privacidade (LGPD) entre:
 
-1. **Engenharia de Software:** Requisitos Funcionais (RF), Requisitos Não Funcionais (RNF), Casos de Uso (UC), Matriz de Rastreabilidade, Diagramas de Atividades, Diagrama de Classes e Diagramas de Sequência.
+1. **Engenharia de Software:** Requisitos Funcionais (RF), Requisitos Não Funcionais (RNF), Casos de Uso (UC), Matriz de Rastreabilidade, Diagrama de Classes e Diagramas de Sequência.
 2. **Banco de Dados:** Modelo Entidade-Relacionamento (MER), Modelo Físico e Script SQL (`MySQL 8.0.16+` / `MariaDB 10.5+`).
-3. **Compliance e Segurança da Informação:** Análise de Riscos (`analise-de-riscos.md`) e Diretrizes de Conformidade LGPD e Anonimato (`conformidade-lgpd.md`).
-4. **Design e Prototipação (UI/UX):** Wireframes funcionais de fluxo.
+3. **Compliance e Segurança da Informação:** Análise de Riscos (`analise-de-riscos.md`) e Diretrizes de Conformidade LGPD e Anonimato (`lgpd-e-anonimato.md`).
+4. **Design e Prototipação (UI/UX):** Wireframes funcionais de fluxo (`wireframes-projeto.md`).
 
 ---
 
@@ -26,7 +26,6 @@ Este documento registra a verificação cruzada e a validação técnica entre t
 | **Levantamento** | Requisitos Funcionais (`RF01`–`RF21`) | 21 | ✔ Validado |
 | **Levantamento** | Requisitos Não Funcionais (`RNF01`–`RNF44`) | 44 | ✔ Validado |
 | **Modelagem UML** | Casos de Uso (`UC-ADM`, `PAR`, `SEC`, `ANA`, `SUP`, `AUD`) | 17 | ✔ Validado |
-| **Modelagem UML** | Diagramas de Atividades | 17 | ✔ Validado |
 | **Modelagem UML** | Diagramas de Sequência | 17 | ✔ Validado |
 | **Modelagem UML** | Diagrama de Classes + Serviços + Enumerações | 21 classes · 2 serviços · 3 enums | ✔ Validado |
 | **Banco de Dados** | Entidades / Tabelas Físicas | 14 | ✔ Validado |
@@ -71,7 +70,7 @@ Todos os 21 requisitos funcionais possuem cobertura ponta a ponta, desde a inter
 ## 4. Validação Arquitetural, Segurança e LGPD
 
 ### 4.1 Garantia Estrutural de Anonimato (`RNF10`–`RNF15` · Art. 12 LGPD)
-* **Dissociação física no banco:** Validado no MER, no Script SQL e em `conformidade-lgpd.md` que **não existe chave estrangeira ou qualquer relação** entre `tokens_anonimos` e `submissoes` / `respostas`.
+* **Dissociação física no banco:** Validado no MER, no Script SQL e em `lgpd-e-anonimato.md` que **não existe chave estrangeira ou qualquer relação** entre `tokens_anonimos` e `submissoes` / `respostas`.
 * **Granularidade temporal reduzida:** O campo `tokens_anonimos.utilizado_em` utiliza o tipo `DATE` (apenas data, sem hora/minuto/segundo), impossibilitando o cruzamento temporal com `submissoes.criado_em` (`DATETIME`).
 * **Ausência de metadados rastreáveis e *k-anonimato*:** Respostas são gravadas sem IP, cookies ou identificadores pessoais (`RNF11`, `RNF12`). O controle de força bruta (3 tentativas em 15 minutos, `RNF43`) ocorre exclusivamente em memória (cache), e relatórios aplicam tamanho mínimo de grupo (mínimo de 5 respondentes) para evitar re-identificação por inferência (`R09`).
 * **Transparência e retenção:** Modelo de Aviso de Privacidade/TCLE validado antes do início do questionário e ciclos de retenção/expurgo definidos por tabela (Art. 15 e 16 da LGPD).
@@ -90,20 +89,16 @@ Todos os 21 requisitos funcionais possuem cobertura ponta a ponta, desde a inter
 
 ---
 
-## 5. Registro de Alinhamento Entre Diagramas, Segurança e Banco
+## 5. Registro de Alinhamento Entre Diagramas e Banco
 
-Durante a revisão cruzada entre o **Diagrama de Classes**, os **Diagramas de Sequência**, os **Documentos de Segurança** e o **Script SQL**, foram mapeados pontos de refinamento documental para manter 100% de consistência semântica na entrega final:
-
-| # | Escopo | Divergência / Ponto Identificado | Resolução / Diretriz Adotada |
+| # | Escopo | Divergência Identificada | Resolução / Diretriz Adotada |
 | :---: | :--- | :--- | :--- |
-| **01** | `UC-PAR-02` (Sequência) | Criação do objeto `Submissao` antes de `validarObrigatorias()`. | Instanciar e persistir `Submissao` somente **dentro da transação atômica**, após validação bem-sucedida (`R13`, `R25`). |
-| **02** | `Chamado` (Classes × Banco) | Banco possui `status`, `aberto_em`, `fechado_em` e `aberto_por`; classe omitia os métodos `existeDuplicado()`, `abrir()` e `fechar()`. | Sincronizar atributos e métodos na classe `Chamado` conforme o modelo físico e `seq-sup-02`. |
-| **03** | `TokenAnonimo` (Classes × Banco) | Atributo `utilizadoEm` tipado como `LocalDateTime` na classe, mas `DATE` no banco. | Ajustar tipo na classe para `LocalDate`, preservando o requisito de anonimato (`RNF10`, `R09`). |
+| **01** | `UC-PAR-02` (Sequência) | Criação do objeto `Submissao` antes de `validarObrigatorias()`. | Instanciar e persistir `Submissao` somente **dentro da transação atômica**, após validação bem-sucedida. |
+| **02** | `Chamado` (Classes × Banco) | Banco possui `status`, `aberto_em`, `fechado_em` e `aberto_por`; classe omitia `existeDuplicado()`, `abrir()` e `fechar()`. | Sincronizar atributos e métodos na classe `Chamado` conforme o modelo físico e `seq-sup-02`. |
+| **03** | `TokenAnonimo` (Classes × Banco) | Atributo `utilizadoEm` tipado como `LocalDateTime` na classe, mas `DATE` no banco. | Ajustar tipo na classe para `LocalDate`, preservando o requisito de anonimato (`RNF10`). |
 | **04** | `RelatorioService` (Classes) | Assinatura `compararCategoria(p)` vs `compararCategorias(p)` na sequência, e visibilidade privada (`-`) em `porPergunta`. | Padronizar para `+ compararCategorias(p : Pesquisa)` e `+ porPergunta(p : Pesquisa)`. |
-| **05** | Assinaturas de Métodos | Tipagens genéricas/incompletas em `Administrador` (`ListQuestoes`, `p : int`) e `AnalistaDeDados` (`formato : int`). | Padronizar assinaturas para `List<Questao>`, `Pesquisa` e `formato : String`. |
+| **05** | Granularidade Temporal (`LGPD`) | Alinhamento da descrição de `submissoes.criado_em` (`DATETIME`) frente a `tokens_anonimos.utilizado_em` (`DATE`). | Documentado em `lgpd-e-anonimato.md` que o descasamento já impede correlação direta, com truncamento opcional na aplicação. |
 | **06** | Notificações de Grupo | Tabela `notificacoes` aponta para um `usuario_id` individual, enquanto fluxos citam "Secretaria" ou "Plantão". | A camada de aplicação itera sobre os usuários ativos do perfil alvo e gera uma notificação individual por destinatário. |
-| **07** | Granularidade Temporal (`conformidade-lgpd.md`) | Menção à redução de precisão em `submissoes.criado_em`, enquanto o SQL define o campo como `DATETIME`. | Alinhar texto ao SQL (`tokens_anonimos.utilizado_em` em `DATE` já quebra o pareamento temporal) e registrar truncamento de `submissoes` como melhoria opcional. |
-| **08** | Regras de Negócio na Aplicação | Limite de 50 questões (`UC-ADM-03`), motivo de reprovação ≥ 10 caracteres (`UC-SEC-01`), SLA (4h/24h) e separação `criado_por != aprovado_por` (`R20`). | Mantidos na camada de serviço/aplicação (regras dinâmicas), enquanto restrições estruturais ficam no SGBD. |
 
 ---
 
@@ -111,8 +106,7 @@ Durante a revisão cruzada entre o **Diagrama de Classes**, os **Diagramas de Se
 
 - [x] **Coerência de Modelo:** Todas as 14 tabelas do MER correspondem diretamente às entidades persistentes do Diagrama de Classes.
 - [x] **Rastreabilidade Completa:** Nenhum caso de uso órfão; todos os 21 RFs estão mapeados na Matriz de Rastreabilidade.
-- [x] **Segurança e LGPD:** Impossibilidade técnica de vincular um participante às suas respostas validada no banco, nos fluxos e no TCLE.
-- [x] **Gestão de Riscos:** Matriz de 27 riscos (`R01`–`R27`) revisada, com controles do SQL mapeados e plano de ação priorizado definido.
+- [x] **Segurança e LGPD:** Impossibilidade técnica de vincular um participante às suas respostas validada no banco, em `analise-de-riscos.md` e em `lgpd-e-anonimato.md`.
 - [x] **Atomicidade:** Geração de lotes/tokens (`UC-ADM-04`) e envio de respostas/baixa de token (`UC-PAR-02`) projetados em transações atômicas.
 - [x] **Auditoria:** Operações críticas de escrita e exportação registradas em `logs_auditoria` com proteção contra `UPDATE` e `DELETE`.
 
@@ -127,5 +121,5 @@ Os integrantes abaixo atestam que os artefatos de Engenharia de Software, Banco 
 | **Anderson Clayton Pereira de Assis** | Engenharia de Requisitos, Modelagem UML e Arquitetura | ✔ Aprovado |
 | **Eduardo Matias Ferreira** | Banco de Dados (MER, Modelo Físico, SQL e Triggers) | ✔ Aprovado |
 | **Lucas Augusto Vieira Tridapali** | Diagramas de Sequência, Classes e Regras de Negócio | ✔ Aprovado |
-| **Vitor Hugo Dias Mantovani** | Segurança da Informação, Análise de Riscos e LGPD | ✔ Aprovado |
+| **Vitor Hugo Dias Mantovani** | Segurança da Informação, LGPD e Análise de Riscos | ✔ Aprovado |
 | **Neandro Bueno Vieira** | Prototipação (Wireframes), UI/UX e Rastreabilidade | ✔ Aprovado |

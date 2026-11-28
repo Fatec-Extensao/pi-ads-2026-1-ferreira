@@ -87,13 +87,13 @@ O projeto incorpora controles de **Privacy by Design** e mitigação de riscos a
 | Módulo / Pasta | Artefato | Descrição |
 | :--- | :--- | :--- |
 | **`2026-2/engenharia-software/`** | `requisitos.md` | 21 Requisitos Funcionais, 44 Não Funcionais, 17 Casos de Uso e Matriz de Rastreabilidade. |
-| **`2026-2/engenharia-software/`** | `modelagem-uml/classes.md` | Especificação das 21 classes, 2 serviços, 3 enumerações e mapeamento classe → tabela. |
-| **`2026-2/engenharia-software/`** | `modelagem-uml/sequencia.md` | Fluxos de interação detalhados para todos os 17 casos de uso. |
-| **`2026-2/engenharia-software/`** | `wireframes/` | 18 telas prototipadas cobrindo todos os perfis de usuário. |
+| **`2026-2/engenharia-software/`** | `especificacao-diagrama-de-classes.md` | Especificação das 21 classes, 2 serviços, 3 enumerações e mapeamento classe → tabela. |
+| **`2026-2/engenharia-software/`** | `especificacao-diagramas-de-sequencia.md` | Fluxos de interação detalhados para todos os 17 casos de uso. |
+| **`2026-2/desenvolvimento-web/`** | `wireframes-projeto.md` e `wireframes/` | 18 telas prototipadas cobrindo todos os perfis de usuário. |
 | **`2026-2/banco-de-dados/`** | `mer.md` & `script_banco_gestao_pesquisas.sql` | Diagrama ER, dicionário de dados, restrições `CHECK`/`UNIQUE` e 4 *triggers*. |
 | **`2026-2/seguranca/`** | `analise-de-riscos.md` | Identificação, matriz P×I, controles OWASP e plano de mitigação de 27 riscos. |
-| **`2026-2/seguranca/`** | `conformidade-lgpd.md` | Enquadramento legal, *k-anonimato*, política de retenção e modelo de TCLE. |
-| **`evidencias/`** | `apresentacao-projeto.html` | Apresentação visual interativa da solução. |
+| **`2026-2/seguranca/`** | `lgpd-e-anonimato.md` | Enquadramento legal, *k-anonimato*, política de retenção e modelo de TCLE. |
+| **`evidencias/`** | `apresentacao.html` | Apresentação visual interativa da solução. |
 | **`evidencias/`** | `validacao-do-projeto.md` | Relatório de validação cruzada e termo de aprovação da equipe. |
 
 ---

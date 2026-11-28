@@ -1,7 +1,7 @@
 # Análise de Riscos — Sistema Web para Gestão de Pesquisas por Questionários
 
 > Projeto Integrador · ADS · Fatec Lins · 2026
-> Versão 1.0 · novembro/2026
+> Versão 1.1 · novembro/2026
 
 ---
 
@@ -27,7 +27,7 @@ Este documento identifica os riscos de segurança do sistema, classifica cada um
 A análise foi feita sobre os artefatos de projeto:
 
 - requisitos funcionais e não funcionais (RF01–RF21 e RNF01–RNF44);
-- os 17 casos de uso e seus diagramas de atividades e de sequência;
+- os 17 casos de uso e seus diagramas de sequência;
 - o diagrama de classes, o MER e o modelo físico;
 - o script SQL (`script_banco_gestao_pesquisas.sql`).
 
@@ -267,17 +267,17 @@ Cada risco indica o cenário no sistema, as medidas (preventivas, detectivas e c
 - **Nível:** P3 × I5 = **15 🟠 Alto** · residual 2 × 4 = 8 🟡
 - **Cenário:** mesmo sem ligação entre resposta e senha, um atacante ou analista pode **re-identificar** pessoas por inferência:
   - uma categoria pequena (ex.: 3 professores) ou um cruzamento de perguntas (UC-ANA-01) cria grupos tão pequenos que a resposta fica evidente;
-  - o horário de `submissoes.criado_em` combinado com o **log de acesso do servidor web** (IP + horário) liga uma submissão a um endereço;
+  - o horário de `submissoes.criado_em` (`DATETIME`) combinado com o **log de acesso do servidor web** (IP + horário) liga uma submissão a um endereço;
   - respostas abertas trazem nome, CPF ou e-mail digitados pelo participante;
   - identificadores sequenciais (`AUTO_INCREMENT`) preservam a ordem em que as pessoas responderam.
 - **Mitigação:**
   - **Tamanho mínimo de grupo** em relatórios e cruzamentos (ex.: não exibir resultados de grupos com menos de 5 submissões).
-  - **Reduzir a precisão do horário** de `submissoes.criado_em` (armazenar só a data ou um intervalo), como já é feito em `tokens_anonimos.utilizado_em` (só `DATE`).
+  - **Descasamento temporal:** manter `tokens_anonimos.utilizado_em` apenas com **data** (`DATE`, sem hora), e na camada de aplicação truncar ou arredondar o timestamp de `submissoes.criado_em` (`DATETIME`) para janelas de turno/dia.
   - Não registrar IP, cookies ou identificadores de participantes (RNF12), **inclusive nos logs do servidor web e do proxy** nas rotas de resposta; quando inevitável, anonimizar o IP e manter retenção curta.
   - Aviso na tela de resposta aberta: "não informe dados pessoais"; detecção simples de padrões (CPF, e-mail) para alertar ou mascarar.
   - Avaliar identificadores não sequenciais (UUID) em `submissoes` e `respostas`.
   - Manter a regra de **não haver associação** entre `submissoes` e `tokens_anonimos` (já no modelo).
-- **Já previsto no projeto:** RNF10 a RNF15; `utilizado_em` só com data; nenhuma chave entre submissão e senha.
+- **Já previsto no projeto:** RNF10 a RNF15; `utilizado_em` só com data (`DATE`); nenhuma chave entre submissão e senha.
 - **Tratamento:** Mitigar · **Responsável:** Desenvolvimento e Auditor (verificação)
 
 #### R10 — Vazamento de respostas
@@ -328,7 +328,7 @@ Cada risco indica o cenário no sistema, as medidas (preventivas, detectivas e c
   - **Transação única** para criar a submissão, gravar as respostas e marcar a senha como utilizada (RNF25).
   - Reservar a senha de forma atômica antes de gravar: `UPDATE tokens_anonimos SET utilizado_em = CURDATE() WHERE token_hash = ? AND utilizado_em IS NULL` e prosseguir só se **uma linha** foi afetada (ou `SELECT ... FOR UPDATE`).
   - Teste de concorrência (ex.: k6 ou JMeter) com a mesma senha.
-- **Já previsto no projeto:** a *trigger* `trg_tokens_uma_utilizacao` do script SQL impede uma segunda utilização do mesmo token; os diagramas de sequência e de atividades de UC-PAR-02 mostram a gravação na mesma transação.
+- **Já previsto no projeto:** a *trigger* `trg_tokens_uma_utilizacao` do script SQL impede uma segunda utilização do mesmo token; os diagramas de sequência de UC-PAR-02 mostram a gravação na mesma transação.
 - **Tratamento:** Mitigar · **Responsável:** Desenvolvimento
 
 #### R14 — Compartilhamento ou venda de senhas
@@ -529,7 +529,7 @@ O banco já implementa parte das mitigações. Esta tabela mostra o que existe n
 | Prioridade | Quando | Riscos | Ações principais |
 |:-:|---|---|---|
 | **1** | Antes de qualquer homologação | R19, R02, R01, R03, R07 | MFA e BCrypt/Argon2 no login; escape de saída e CSP; consultas parametrizadas e conta do banco com privilégio mínimo; testes de autorização por perfil; segredos fora do Git. |
-| **2** | Antes da primeira pesquisa real | R13, R09, R10, R17, R08, R04 | Transação e reserva atômica da senha; tamanho mínimo de grupo nos relatórios e horário reduzido em `submissoes`; backups e dados criptografados; HMAC ou senha mais longa; HTTPS com HSTS; CSRF e reautenticação em operações críticas. |
+| **2** | Antes da primeira pesquisa real | R13, R09, R10, R17, R08, R04 | Transação e reserva atômica da senha; tamanho mínimo de grupo nos relatórios e descasamento temporal; backups e dados criptografados; HMAC ou senha mais longa; HTTPS com HSTS; CSRF e reautenticação em operações críticas. |
 | **3** | Durante a fase de implantação | R06, R11, R12, R14, R15, R22, R23, R24 | Verificação de dependências e hardening; aviso de privacidade e política de retenção; contas nominais no banco; controle de distribuição e invalidação de lote; conciliação tokens × submissões; teste de carga; teste de restauração de backup. |
 | **4** | Rotina contínua | R05, R16, R18, R20, R21, R25, R26, R27 | Neutralizar fórmulas em CSV; CAPTCHA e limite global; revalidação no servidor; separação de funções e trava após aprovação; logs externos imutáveis; conciliação de inconsistências; regras de estado; aceitar R27. |
 
@@ -577,4 +577,4 @@ Os itens da prioridade 1 também são **requisitos de aceite**: o sistema não d
 - **OWASP Cheat Sheet Series** — SQL Injection Prevention, XSS Prevention, CSRF Prevention, Password Storage e Session Management.
 - **Lei Geral de Proteção de Dados (Lei nº 13.709/2018)** — princípios de finalidade, necessidade e segurança (art. 6º e art. 46).
 - **ISO/IEC 27005** — gestão de riscos de segurança da informação (escala qualitativa de probabilidade e impacto).
-- Documentos do projeto: *requisitos-e-casos-de-uso* (RF, RNF e UC), diagramas de classes, de sequência e de atividades, MER, modelo físico e `script_banco_gestao_pesquisas.sql`.
+- Documentos do projeto: `requisitos.md` (RF, RNF e UC), diagramas de classes e de sequência, MER, modelo físico e `script_banco_gestao_pesquisas.sql`.

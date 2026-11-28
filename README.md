@@ -16,8 +16,9 @@ Sistema que permite a criação, aplicação e análise de pesquisas institucion
 
 ### Engenharia de Software e Modelagem (`2026-2/`)
 - [Levantamento e Análise de Requisitos](2026-2/engenharia-software/requisitos.md)
-- [Diagramas de Casos de Uso](2026-2/engenharia-software/modelagem-uml/casos-de-uso.md)
-- [Especificação de Fluxos (Diagramas de Atividade)](2026-2/engenharia-software/modelagem-uml/especificacao.md)
+- [Especificação do Diagrama de Classes](2026-2/engenharia-software/especificacao-diagrama-de-classes.md)
+- [Especificação dos Diagramas de Sequência](2026-2/engenharia-software/especificacao-diagramas-de-sequencia.md)
+- [Wireframes do Projeto](2026-2/desenvolvimento-web/wireframes-projeto.md)
 
 ### Segurança e Conformidade (`2026-2/seguranca/`)
 - [Análise de Riscos](2026-2/seguranca/analise-de-riscos.md)
@@ -44,8 +45,8 @@ Sistema que permite a criação, aplicação e análise de pesquisas institucion
 
 | Disciplina | Professor(a) | Pasta no Repositório |
 |------------|--------------|----------------------|
-| [Engenharia de Software](2026-1/documentacao/eng-software/) | Prof. Alciano | `2026-1/documentacao/eng-software/` |
-| [Algoritmo e Lógica de Programação](2026-1/documentacao/algoritmo/) | Profa. Gisele | `2026-1/documentacao/algoritmo/` |
+| [Engenharia de Software](2026-1/documentacao/) | Prof. Alciano | `2026-1/documentacao/` |
+| [Algoritmo e Lógica de Programação](2026-1/documentacao/) | Profa. Gisele | `2026-1/documentacao/` |
 | [Projeto Integrador](2026-1/documentacao/projeto-int/) | Prof. Julio | `2026-1/documentacao/projeto-int/` |
 
 ### Disciplinas de Apoio do 2º Semestre (`2026-2/`)
