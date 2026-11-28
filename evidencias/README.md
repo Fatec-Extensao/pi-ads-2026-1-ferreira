@@ -35,7 +35,7 @@ gestao-pesquisas-questionarios/
 
 ## Pasta `evidencias/`
 
-A pasta **`evidencias/`** centraliza os materiais de encerramento, apresentação e comprovação técnica do Projeto Integrador I:
+A pasta **`evidencias/`** centraliza os materiais de encerramento, apresentação e comprovação técnica do Projeto Integrador:
 
 | Arquivo | Descrição |
 | :--- | :--- |
