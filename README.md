@@ -4,7 +4,7 @@ Repositório do Projeto Integrador do curso de Análise e Desenvolvimento de Sis
 
 ## 🔗 Aplicação Publicada
 
-> ⚠️ Ainda não publicada. Este link será atualizado assim que o deploy (Netlify/Vercel/GitHub Pages) estiver disponível.
+ **Acesse o web-site online:** [https://aquamarine-strudel-b32d04.netlify.app/main](https://aquamarine-strudel-b32d04.netlify.app/main)
 
 ## 📌 Sobre o Projeto
 
