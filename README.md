@@ -12,6 +12,20 @@ Repositório do Projeto Integrador do curso de Análise e Desenvolvimento de Sis
 
 Sistema que permite a criação, aplicação e análise de pesquisas institucionais, garantindo o anonimato dos participantes e a organização das respostas por categorias de respondentes (Alunos, Professores, Colaboradores, entre outras).
 
+---
+
+## 👥 Integrantes do Grupo
+
+| Nome do Aluno | GitHub / Perfil |
+| :--- | :--- |
+| Neandro Bueno Vieira | [@NeandroBueno](https://github.com/NeandroBueno) |
+| Eduardo Matias Ferreira | [@edumatias1224](https://github.com/edumatias1224) |
+| Lucas Augusto Vieira Tridapali | [@LucasTridapali](https://github.com/Lucastridapali) |
+| Anderson Clayton Pereira de Assis | [@AndersonClaytonAssis](https://github.com/AndersonClaytonAssis) |
+| Vitor Hugo Dias Mantovani | [@Salieri-hi](https://github.com/Salieri-hi) |
+
+---
+
 ## 📚 Documentação e Evidências
 
 ### Engenharia de Software e Modelagem (`2026-2/`)
