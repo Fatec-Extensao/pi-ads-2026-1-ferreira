@@ -578,5 +578,3 @@ Os itens da prioridade 1 também são **requisitos de aceite**: o sistema não d
 - **Lei Geral de Proteção de Dados (Lei nº 13.709/2018)** — princípios de finalidade, necessidade e segurança (art. 6º e art. 46).
 - **ISO/IEC 27005** — gestão de riscos de segurança da informação (escala qualitativa de probabilidade e impacto).
 - Documentos do projeto: *requisitos-e-casos-de-uso* (RF, RNF e UC), diagramas de classes, de sequência e de atividades, MER, modelo físico e `script_banco_gestao_pesquisas.sql`.
-analise-de-riscos.md
-Exibindo analise-de-riscos.md…

@@ -129,5 +129,3 @@ Os integrantes abaixo atestam que os artefatos de Engenharia de Software, Banco 
 | **Lucas Augusto Vieira Tridapali** | Diagramas de Sequência, Classes e Regras de Negócio | ✔ Aprovado |
 | **Vitor Hugo Dias Mantovani** | Segurança da Informação, Análise de Riscos e LGPD | ✔ Aprovado |
 | **Neandro Bueno Vieira** | Prototipação (Wireframes), UI/UX e Rastreabilidade | ✔ Aprovado |
-validacao-do-projeto.md
-Exibindo validacao-do-projeto.md…

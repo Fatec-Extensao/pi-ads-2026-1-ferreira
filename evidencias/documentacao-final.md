@@ -103,5 +103,3 @@ O projeto incorpora controles de **Privacy by Design** e mitigação de riscos a
 1. Certifique-se de utilizar **MySQL 8.0.16+** ou **MariaDB 10.5+** (necessário para suporte completo às restrições `CHECK`).
 2. Execute o arquivo `script_banco_gestao_pesquisas.sql` localizado em `2026-2/banco-de-dados/`.
 3. Verifique a criação das 14 tabelas, dos perfis iniciais na tabela `perfis` e das 4 *triggers* ativas no schema.
-documentacao-final.md
-Exibindo documentacao-final.md…

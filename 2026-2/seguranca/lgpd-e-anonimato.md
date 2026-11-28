@@ -146,5 +146,3 @@ O texto abaixo deve ser apresentado ao respondente na tela inicial da pesquisa (
 - **ISO/IEC 27701** — *Gestão da Privacidade da Informação* (extensão da ISO/IEC 27001 e 27002).
 - **OWASP Top 10 Privacy Risks** — boas práticas de minimização e proteção de dados em aplicações web.
 - Artefatos do projeto: *Requisitos e Casos de Uso* (`RF01–RF21`, `RNF01–RNF44`), `script_banco_gestao_pesquisas.sql` e `analise-de-riscos.md`.
-conformidade-lgpd.md
-Exibindo conformidade-lgpd.md…
