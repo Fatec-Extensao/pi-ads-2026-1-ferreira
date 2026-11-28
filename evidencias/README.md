@@ -16,23 +16,6 @@ Sistema web institucional desenvolvido para **criar, aprovar, aplicar e analisar
 
 ---
 
-## Estrutura do Repositório
-
-```text
-gestao-pesquisas-questionarios/
-├── README.md                              # Visão geral e guia de navegação do repositório
-├── engenharia-software/                   # Requisitos, casos de uso, diagramas UML e wireframes
-├── banco-de-dados/                        # MER, modelo físico e script SQL (MariaDB/MySQL)
-├── seguranca/                             # Análise de riscos e diretrizes de conformidade LGPD
-├── desenvolvimento-web/                   # Código-fonte da aplicação web
-└── evidencias/                            # Apresentação, documentação consolidada e validação final
-    ├── apresentacao-projeto.html          # Slides interativos de apresentação do projeto
-    ├── documentacao-final.md              # Documentação técnica mestra e índice executivo
-    └── validacao-do-projeto.md            # Relatório de validação cruzada e rastreabilidade
-```
-
----
-
 ## Pasta `evidencias/`
 
 A pasta **`evidencias/`** centraliza os materiais de encerramento, apresentação e comprovação técnica do Projeto Integrador:
