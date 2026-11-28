@@ -36,13 +36,13 @@ Sistema que permite a criação, aplicação e análise de pesquisas institucion
 **2º Semestre 2026 — 2º Termo ADS**  
 **Professor Responsável:** Prof. João Luís Cardoso de Moraes (Projeto Integrador ADS II — 30h)
 
-### Disciplinas do 1º Semestre que contribuíram para o Projeto Integrador
+### Disciplinas do 1º Semestre que contribuíram para o Projeto Integrador (`2026-1/`)
 
-| Disciplina | Professor(a) |
-|------------|--------------|
-| Engenharia de Software | Prof. Alciano |
-| Algoritmo e Lógica de Programação | Profa. Gisele |
-| Projeto Integrador | Prof. Julio |
+| Disciplina | Professor(a) | Pasta no Repositório |
+|------------|--------------|----------------------|
+| [Engenharia de Software](2026-1/documentacao/eng-software/) | Prof. Alciano | `2026-1/documentacao/eng-software/` |
+| [Algoritmo e Lógica de Programação](2026-1/documentacao/algoritmo/) | Profa. Gisele | `2026-1/documentacao/algoritmo/` |
+| [Projeto Integrador](2026-1/documentacao/projeto-int/) | Prof. Julio | `2026-1/documentacao/projeto-int/` |
 
 ### Disciplinas de Apoio do 2º Semestre (`2026-2/`)
 
