@@ -4,7 +4,7 @@ Repositório do Projeto Integrador do curso de Análise e Desenvolvimento de Sis
 
 ## 🔗 Aplicação Publicada
 
-**Acesse o web-site online:** [https://netlify.app](https://netlify.app)
+**Acesse o web-site online:** [https://aquamarine-strudel-b32d04.netlify.app/main](https://aquamarine-strudel-b32d04.netlify.app/main)
 
 ## 📌 Sobre o Projeto
 
