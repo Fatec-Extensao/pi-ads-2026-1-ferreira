@@ -21,12 +21,12 @@ Sistema que permite a criação, aplicação e análise de pesquisas institucion
 
 ### Segurança e Conformidade (`2026-2/seguranca/`)
 - [Análise de Riscos](2026-2/seguranca/analise-de-riscos.md)
-- [Conformidade com a LGPD e Garantia de Anonimato](2026-2/seguranca/conformidade-lgpd.md)
+- [Conformidade com a LGPD e Garantia de Anonimato](2026-2/seguranca/lgpd-e-anonimato.md)
 
 ### Apresentação e Validação (`evidencias/`)
 - [Documentação Final (Índice Executivo)](evidencias/documentacao-final.md)
 - [Validação do Projeto e Rastreabilidade](evidencias/validacao-do-projeto.md)
-- [Apresentação do Projeto (Slides HTML)](evidencias/apresentacao-projeto.html)
+- [Apresentação do Projeto (Slides HTML)](evidencias/apresentacao.html)
 
 ## 🛠️ Tecnologias
 
